@@ -6,18 +6,17 @@ import { AboutComponent } from './about/about.component';
 import { FaqsComponent } from './faqs/faqs.component';
 import { FeaturesComponent } from './features/features.component';
 
-
-
 @NgModule({
   declarations: [
     HomeComponent,
     AboutComponent,
     FaqsComponent,
-    FeaturesComponent
+    FeaturesComponent,
   ],
-  imports: [
-    CommonModule,
-    LandingPageRoutingModule
-  ]
+  imports: [CommonModule, LandingPageRoutingModule],
 })
-export class LandingPageModule { }
+export class LandingPageModule {
+  constructor() {
+    console.log('landing');
+  }
+}

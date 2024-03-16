@@ -1,10 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', redirectTo: 'landing/home', pathMatch: 'full' },
+  { path: 'landing', redirectTo: 'landing/home', pathMatch: 'full' },
+  {
+    path: 'landing',
+    loadChildren: () =>
+      import('./modules/landing-page/landing-page.module').then(
+        (m) => m.LandingPageModule
+      ),
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./modules/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
