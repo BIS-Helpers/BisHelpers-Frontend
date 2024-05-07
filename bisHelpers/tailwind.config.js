@@ -17,6 +17,9 @@ module.exports = {
         900: '#105569',
         950: '#033849',
       },
+      default: {
+        50: '#4E5663',
+      },
     },
     extend: {
       fontSize: {
