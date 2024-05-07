@@ -8,6 +8,6 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 })
 export class DashboardModule {
   constructor() {
-    console.log('asd');
+    console.log('dashboard');
   }
 }

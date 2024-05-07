@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LandingPageRoutingModule } from './landing-page-routing.module';
+//Landing Components
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import { FaqsComponent } from './faqs/faqs.component';
 import { FeaturesComponent } from './features/features.component';
+import { FaqsComponent } from './faqs/faqs.component';
 
 @NgModule({
   declarations: [
