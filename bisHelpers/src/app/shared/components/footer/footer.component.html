@@ -1,1 +1,58 @@
-<p>footer works!</p>
+<footer class="bg-white w-full px-5 py-5 lg:px-20 m-0 ">
+    <div class="fristFooter flex justify-between  md:flex-row items-center ">
+        <a [routerLink]="'/landing'" class="flex items-center ">
+            <img src="assets/images/logo.png" class="w-16" alt="BisHelpers-Logo" />
+            </a>
+            <ul
+            class="flex gap-2 m-0 font-medium rounded-lg md:flex-row ">
+            <li>
+              <a
+                [routerLink]="'/landing/home'"
+                routerLinkActive="text-brand-500"
+                class="block lg:py-2 lg:px-3 text-default-50 rounded md:hover:bg-transparent md:hover:text-brand-500 md:p-0 transition-all"
+                aria-current="page"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                [routerLink]="'/landing/about'"
+                routerLinkActive="text-brand-500"
+                class="block lg:py-2 lg:px-3 text-default-50 rounded md:hover:bg-transparent md:hover:text-brand-500 md:p-0 transition-all"
+                aria-current="page"
+                >About</a
+              >
+            </li>
+            <li>
+              <a
+                [routerLink]="'/landing/features'"
+                routerLinkActive="text-brand-500"
+                class="block lg:py-2 lg:px-3 text-default-50 rounded md:hover:bg-transparent md:hover:text-brand-500 md:p-0 transition-all"
+                aria-current="page"
+                >Features</a
+              >
+            </li>
+            <li>
+              <a
+                [routerLink]="'/landing/faqs'"
+                routerLinkActive="text-brand-500"
+                class="block lg:py-2 lg:ps-3 text-default-50 rounded md:hover:bg-transparent md:hover:text-brand-500 md:p-0 transition-all"
+                aria-current="page"
+                >FAQS</a
+              >
+            </li>
+          </ul>
+    </div>
+    <div class="secFooter flex justify-end flex-col  lg:flex-row lg:justify-between">
+        <div class="text-default-50 text-paragraph-md justify-end flex">
+            &copy;<span>2024 BisHelpers.
+            </span><span>All Right Reserved.</span>
+        </div>
+        <div class="icons flex items-center gap-5 lg:py-0 lg:m-0 justify-end pt-2">
+          <i class="pi pi-twitter text-brand-950"style="font-size: 1.5rem"></i>
+          <i class="pi pi-facebook text-brand-950"style="font-size: 1.5rem"></i>
+          <i class="pi pi-instagram text-brand-950" style="font-size: 1.5rem"></i>
+                        
+        </div>
+    </div>
+</footer>

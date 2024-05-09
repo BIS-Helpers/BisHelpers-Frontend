@@ -20,6 +20,7 @@ module.exports = {
       default: {
         50: '#4E5663',
       },
+      
     },
     extend: {
       fontSize: {
