@@ -17,7 +17,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     FeaturesComponent,
     LandingPageComponent,
   ],
-  imports: [CommonModule, LandingPageRoutingModule,SharedModule]
+  imports: [CommonModule, LandingPageRoutingModule, SharedModule],
 })
 export class LandingPageModule {
   constructor() {
