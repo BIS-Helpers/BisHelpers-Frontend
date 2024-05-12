@@ -8,7 +8,9 @@ import { AboutComponent } from './about/about.component';
 import { FeaturesComponent } from './features/features.component';
 import { FaqsComponent } from './faqs/faqs.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+//PrimeNG Modules
 import { CarouselModule } from 'primeng/carousel';
+import { AccordionModule } from 'primeng/accordion';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { CarouselModule } from 'primeng/carousel';
     LandingPageRoutingModule,
     SharedModule,
     CarouselModule,
+    AccordionModule,
   ],
 })
 export class LandingPageModule {

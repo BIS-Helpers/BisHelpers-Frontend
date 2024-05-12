@@ -1,1 +1,57 @@
-<p>faqs works!</p>
+<div class="py-5 lg:py-10 px-5 lg:px-20 overflow-hidden">
+  <!-- app-hero -->
+  <div
+    class="brief flex flex-col lg:flex-row gap-8 lg:gap-10 justify-between items-center py-10 lg:py-20"
+  >
+    <div class="flex flex-col gap-10 max-w-[566px]">
+      <p
+        class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg text-default-50"
+      >
+        "Lorem ipsum" is a placeholder text commonly used in the design and
+        publishing industries. It's meant to simulate the appearance of real
+        text without actually being meaningful content. Here's a standard
+        excerpt of Lorem Ipsum text:
+      </p>
+    </div>
+    <iframe
+      class="rounded-lg shadow-lg md:w-[658px] md:h-[364px] w-fit"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3452.7845430372145!2d31.218377075011436!3d30.071709817279352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145840fc5cf0dcfb%3A0x5c8b8a3b52b6bcbc!2sFaculty%20of%20Commerce%20and%20Business%20Administration%20Helwan%20University!5e0!3m2!1sen!2seg!4v1715505480541!5m2!1sen!2seg"
+      style="border: 0"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+
+  <div>
+    <p-accordion [activeIndex]="0">
+      <p-accordionTab
+        header="How is the study structure within the BIS Program organized?"
+      >
+        <p>
+          The program operates on a credit hour system, with the academic year
+          split into two semesters, and the possibility of an additional summer
+          term.
+        </p>
+      </p-accordionTab>
+      <p-accordionTab
+        header="What are the requirements for obtaining a bachelor's degree in the BIS Program?"
+      >
+        <p>
+          To graduate, a student must successfully complete 129 credit hours
+          across at least eight semesters, excluding summer terms. These
+          semesters are distributed over four academic levels.
+        </p>
+      </p-accordionTab>
+      <p-accordionTab
+        header="What are the credit hour limits for registration in each semester?"
+      >
+        <p>
+          Students can register for a minimum of 9 credit hours and a maximum of
+          18 credit hours per semester. Exceptions may be made for graduation
+          cases with the approval of the program supervisor.
+        </p>
+      </p-accordionTab>
+    </p-accordion>
+  </div>
+</div>
