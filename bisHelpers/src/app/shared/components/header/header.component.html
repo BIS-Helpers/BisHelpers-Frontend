@@ -1,10 +1,12 @@
-<nav class="bg-white w-full z-30 top-0 start-0">
-  <div class="flex flex-wrap items-center justify-between py-5 px-20">
+<nav class="bg-white w-full top-0 start-0">
+  <div
+    class="flex flex-wrap items-center md:justify-normal justify-between py-5 px-5 lg:px-20"
+  >
+    <a [routerLink]="'/landing'" class="flex items-center">
+      <img src="assets/images/logo.png" class="w-16" alt="BisHelpers-Logo" />
+    </a>
+
     <div class="flex md:order-2 space-x-3 md:space-x-0">
-      <div class="flex items-center gap-4">
-        <button type="button" class="btn-secondary">Login</button>
-        <button type="button" class="btn-primary">Sign up</button>
-      </div>
       <button
         data-collapse-toggle="navbar-sticky"
         type="button"
@@ -30,53 +32,75 @@
         </svg>
       </button>
     </div>
+
     <div
-      class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+      class="items-center justify-between hidden w-full md:flex md:w-auto grow md:order-1"
       id="navbar-sticky"
     >
-      <a [routerLink]="'/landing'" class="flex items-center space-x-3">
-        <img src="assets/images/logo.png" class="w-16" alt="BisHelpers-Logo" />
-      </a>
       <ul
-        class="flex flex-col lg:gap-2 lg:px-6 lg:py-1 md:p-0 mt-4 font-medium rounded-lg md:flex-row md:mt-0 md:bg-white"
+        class="flex flex-col md:gap-2 px-0 md:px-6 py-1 mt-4 font-medium rounded-lg md:flex-row md:mt-0 md:bg-white"
       >
-        <li>
+        <li
+          class="max-[768px]:hover:bg-gray-100 max-[768px]:px-2 max-[768px]:rounded-lg transition-all"
+        >
           <a
             [routerLink]="'/landing/home'"
             routerLinkActive="text-brand-500"
-            class="block lg:py-2 lg:px-3 text-default-50 rounded md:hover:bg-transparent md:hover:text-brand-500 md:p-0 transition-all"
+            class="block py-2 md:px-3 text-default-50 rounded hover:text-brand-500 transition-all"
             aria-current="page"
             >Home</a
           >
         </li>
-        <li>
+        <li
+          class="max-[768px]:hover:bg-gray-100 max-[768px]:px-2 max-[768px]:rounded-lg transition-all"
+        >
           <a
             [routerLink]="'/landing/about'"
             routerLinkActive="text-brand-500"
-            class="block lg:py-2 lg:px-3 text-default-50 rounded md:hover:bg-transparent md:hover:text-brand-500 md:p-0 transition-all"
+            class="block py-2 md:px-3 text-default-50 rounded hover:text-brand-500 transition-all"
             aria-current="page"
             >About</a
           >
         </li>
-        <li>
+        <li
+          class="max-[768px]:hover:bg-gray-100 max-[768px]:px-2 max-[768px]:rounded-lg transition-all"
+        >
           <a
             [routerLink]="'/landing/features'"
             routerLinkActive="text-brand-500"
-            class="block lg:py-2 lg:px-3 text-default-50 rounded md:hover:bg-transparent md:hover:text-brand-500 md:p-0 transition-all"
+            class="block py-2 md:px-3 text-default-50 rounded hover:text-brand-500 transition-all"
             aria-current="page"
             >Features</a
           >
         </li>
-        <li>
+        <li
+          class="max-[768px]:hover:bg-gray-100 max-[768px]:px-2 max-[768px]:rounded-lg transition-all"
+        >
           <a
             [routerLink]="'/landing/faqs'"
             routerLinkActive="text-brand-500"
-            class="block lg:py-2 lg:px-3 text-default-50 rounded md:hover:bg-transparent md:hover:text-brand-500 md:p-0 transition-all"
+            class="block py-2 md:px-3 text-default-50 rounded hover:text-brand-500 transition-all"
             aria-current="page"
             >FAQS</a
           >
         </li>
       </ul>
+      <div class="flex items-center gap-4">
+        <button
+          type="button"
+          class="btn-secondary"
+          [routerLink]="'/landing/login'"
+        >
+          Login
+        </button>
+        <button
+          type="button"
+          class="btn-primary"
+          [routerLink]="'/landing/signup'"
+        >
+          Sign up
+        </button>
+      </div>
     </div>
   </div>
 </nav>
