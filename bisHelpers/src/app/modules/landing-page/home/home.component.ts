@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 interface Product {
   id: string;
   name: string;
@@ -18,14 +19,28 @@ export class HomeComponent {
   testProducts: Product[] = [
     {
       id: '1000',
-      name: 'Product 1',
+      name: 'student 1',
       description: 'Description for Product 1',
       price: 100,
       status: 'INSTOCK',
     },
     {
-      id: '1001',
-      name: 'Product 2',
+      id: '1002',
+      name: 'student 2',
+      description: 'Description for Product 2',
+      price: 200,
+      status: 'LOWSTOCK',
+    },
+    {
+      id: '1003',
+      name: 'student 3',
+      description: 'Description for Product 2',
+      price: 200,
+      status: 'LOWSTOCK',
+    },
+    {
+      id: '1004',
+      name: 'student 4',
       description: 'Description for Product 2',
       price: 200,
       status: 'LOWSTOCK',
