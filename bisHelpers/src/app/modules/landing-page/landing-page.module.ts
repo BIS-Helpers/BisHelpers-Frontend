@@ -11,6 +11,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 //PrimeNG Modules
 import { CarouselModule } from 'primeng/carousel';
 import { AccordionModule } from 'primeng/accordion';
+import { CarouselComponent } from './about/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { AccordionModule } from 'primeng/accordion';
     FaqsComponent,
     FeaturesComponent,
     LandingPageComponent,
+    CarouselComponent,
   ],
   imports: [
     CommonModule,

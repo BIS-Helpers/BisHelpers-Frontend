@@ -1,0 +1,24 @@
+<div class="">
+    <div class="carousel-container " #carouselContainer>
+        <div class="carousel flex relative px-2 md:px-10" *ngFor="let student of teamMembers">
+            <div class="dev w-[400px] h-[500px] border-l-[30px] border-solid border-brand-100 rounded-[71px] p-0 m-0">
+                <img [src]="student.imgUrl" alt="Team members" class="object-cover w-full h-full p-0 m-0 rounded-[45px]" />
+            </div>
+            <div
+                class="text-info p-2 rounded-[45px] flex flex-col justify-center items-center bg-brand-100 gap-2 w-[300px] md:w-[300px] h-[120px] right-[190px] md:right-[228px] ">
+                <h3 class="text-paragraph-xlg leading-8"> {{student.name}}</h3>
+                <p class="text-paragraph-md">{{student.track}}</p>
+                <div class="icons flex justify-center items-center gap-2">
+                    <a href="{{student.linkedin}}"><i class="pi pi-linkedin text-brand-950"style="font-size :1.5rem;"></i></a>
+                    <a href="{{student.get}}"><i class="pi pi-github text-brand-950" style="font-size :1.5rem;"></i></a>
+                    <a href="{{student.twitter}}"><i class="pi pi-twitter text-brand-950"style="font-size :1.5rem;"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clics flex justify-center items-center gap-12 py-10">
+        <button class="bg-brand-950 w-48 h-5 rounded-3xl" ></button>
+        <button class="bg-brand-200 w-48 h-5 rounded-3xl"></button>
+        <button class="bg-brand-200 w-48 h-5 rounded-3xl"></button>
+    </div>
+</div>
