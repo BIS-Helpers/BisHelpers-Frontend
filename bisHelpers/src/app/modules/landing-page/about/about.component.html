@@ -1,9 +1,9 @@
-<div class="section grid grid-cols-1 md:grid-cols-2 py-5 px-5 md:px-20 items-center justify-center">
-    <div class="img flex justify-center md:justify-start">
-        <img src="assets/images/logo.png" class="w-[380px]" alt="BisHelpers-Logo" />
+<div class="section grid grid-cols-1 md:grid-cols-2 py-5 px-5 md:py-10 md:px-20 items-center justify-center ">
+    <div class="img flex justify-center items-center md:justify-start w-[385px] h-[385x]">
+        <img src="assets/images/logo.png" class="w-full" alt="BisHelpers-Logo" />
     </div>
     <div class="text flex flex-col">
-        <h1 class="text-heading-xxlg font-semibold leading-10 mb-5">Why To Choose<br><span class="text-brand-500 m-1">BIS HELPERS !</span></h1>
+        <h1 class="text-heading-xxlg font-semibold leading-10 flex flex-col gap-1 mb-5">Why To Choose<br><span class="text-brand-500 ">BIS HELPERS !</span></h1>
         <p class="text-default-50 text-paragraph-lg leading-7 py-2 pe-4">We're your academic boosters, here to fill the gaps and fuel your success at BIS-HU! With tailored solutions and teamwork, we're committed to seeing you soar.
             Join our supportive community where your success is our top priority!</p>
     </div>
@@ -165,36 +165,8 @@
 <div class="team py-5 bg-brand-50 flex justify-center items-center ">
     <p class="text-brand-900 text-heading-lg leading-9 font-semibold">TEAM MeMBERS</p>
 </div>
-<div class="team-info md:py-10 md:px-20 px-5">
-    <p-carousel 
-    [value]="testimonials || []" 
-    [numVisible]="3" 
-    [numScroll]="3" 
-    [circular]="true" 
-    [responsiveOptions]="responsiveOptions" 
-    [autoplayInterval]="0"
-    class="testimonial-carousel">
-        <ng-template let-product pTemplate="item">
-                <div class="border-1 surface-border border-round m-2 p-3 relative">
-                    <div class="mb-3">
-                        <div class="relative mx-auto img">
-                            <img 
-                                src="assets/images/testimonial.jpg" 
-                                [alt]="product.name" 
-                                class="w-full border-round object-cover relative" />
-                        </div>
-                    </div>
-                    <div class=" info font-medium flex justify-center items-center flex-col gap-2 bg-brand-200 rounded-3xl py-2">
-                        <h3 class="text-paragraph-xlg leading-8">{{ product.name }}</h3>
-                        <p>{{product.description}}</p>
-                        <div class="icons flex justify-center items-center gap-2">
-                            <i class="pi pi-linkedin text-brand-950" style="font-size: 1.5rem;"></i>
-                            <i class="pi pi-github text-brand-950" style="font-size: 1.5rem;"></i>
-                            <i class="pi pi-twitter text-brand-950" style="font-size: 1.5rem;"></i>
-                        </div>
-                    </div>
-                    
-                </div>
-        </ng-template>
-</p-carousel>
+<div class="team-info py-10 md:px-20 px-5">
+    <app-carousel></app-carousel>
 </div>
+
+
