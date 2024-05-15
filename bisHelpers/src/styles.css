@@ -1,6 +1,6 @@
 @import "primeicons/primeicons.css";
 @layer tailwind-base, primeng, tailwind-utilities;
-        
+
 @layer tailwind-base {
     @tailwind base;
 }
@@ -28,7 +28,7 @@
     opacity: 0.7;
 }
 
-.testimonial-carousel .p-icon{
+.testimonial-carousel .p-icon {
     @apply text-brand-500 w-9 h-9;
 }
 
@@ -41,6 +41,21 @@
 .testimonial-carousel .p-carousel .p-carousel-content .p-carousel-next:enabled:hover {
     @apply bg-transparent;
 }
+
 .testimonial-carousel .p-carousel .p-carousel-indicators {
     @apply hidden;
 }
+
+::-webkit-scrollbar {
+    width: 1rem;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-brand-100
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00CDE5;
+}
+
+/* Handle on hover */
