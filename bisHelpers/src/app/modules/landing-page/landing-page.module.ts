@@ -12,6 +12,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CarouselModule } from 'primeng/carousel';
 import { AccordionModule } from 'primeng/accordion';
 import { CarouselComponent } from './about/carousel/carousel.component';
+import { GalleriaModule } from 'primeng/galleria';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CarouselComponent } from './about/carousel/carousel.component';
     SharedModule,
     CarouselModule,
     AccordionModule,
+    GalleriaModule,
   ],
 })
 export class LandingPageModule {

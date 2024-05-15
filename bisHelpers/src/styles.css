@@ -47,7 +47,8 @@
 }
 
 ::-webkit-scrollbar {
-    width: 1rem;
+    width: 0.8rem;
+
 }
 
 ::-webkit-scrollbar-track {
@@ -56,6 +57,7 @@
 
 ::-webkit-scrollbar-thumb {
     background: #00CDE5;
+    border-radius: 5px;
 }
 
 /* Handle on hover */
