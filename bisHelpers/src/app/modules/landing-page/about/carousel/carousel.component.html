@@ -1,24 +1,77 @@
 <div class="">
-    <div class="carousel-container " #carouselContainer>
-        <div class="carousel flex relative px-2 md:px-10" *ngFor="let student of teamMembers">
-            <div class="dev w-[400px] h-[500px] border-l-[30px] border-solid border-brand-100 rounded-[71px] p-0 m-0">
-                <img [src]="student.imgUrl" alt="Team members" class="object-cover w-full h-full p-0 m-0 rounded-[45px]" />
-            </div>
-            <div
-                class="text-info p-2 rounded-[45px] flex flex-col justify-center items-center bg-brand-100 gap-2 w-[300px] md:w-[300px] h-[120px] right-[190px] md:right-[228px] ">
-                <h3 class="text-paragraph-xlg leading-8"> {{student.name}}</h3>
-                <p class="text-paragraph-md">{{student.track}}</p>
-                <div class="icons flex justify-center items-center gap-2">
-                    <a href="{{student.linkedin}}"><i class="pi pi-linkedin text-brand-950"style="font-size :1.5rem;"></i></a>
-                    <a href="{{student.get}}"><i class="pi pi-github text-brand-950" style="font-size :1.5rem;"></i></a>
-                    <a href="{{student.twitter}}"><i class="pi pi-twitter text-brand-950"style="font-size :1.5rem;"></i></a>
-                </div>
-            </div>
+  <div class="carousel-container" #carouselContainer>
+    <div
+      class="carousel flex relative px-2 md:px-10"
+      [style.transform]="'translateX(' + -480 * currentTranslation + 'px)'"
+      *ngFor="let member of teamMembers"
+    >
+      <div
+        class="member w-[200px] h-[300px] md:w-[400px] md:h-[500px] rounded-3xl relative flex flex-col justify-end items-center"
+        style="background-image: url('{{ member.imgUrl }}');
+        background-size: cover; background-position: center;"
+      >
+        <div
+          class="p-2 flex flex-col justify-center items-center bg-brand-100 lg:gap-2 w-full"
+        >
+          <h3
+            class="text-paragraph-md lg:text-paragraph-xlg font-medium lg:leading-paragraph-xl"
+          >
+            {{ member.name }}
+          </h3>
+          <p class="text-paragraph-sm md:text-paragraph-md">
+            {{ member.track }}
+          </p>
+          <div class="icons flex justify-center items-center gap-2">
+            <a
+              *ngIf="member.linkedin"
+              href="{{ member.linkedin }} "
+              target="_blank"
+              rel="noopener noreferrer"
+              ><i class="pi pi-linkedin text-brand-950 text-xl lg:text-3xl"></i
+            ></a>
+            <a
+              *ngIf="member.github"
+              href="{{ member.github }} "
+              target="_blank"
+              rel="noopener noreferrer"
+              ><i class="pi pi-github text-brand-950 text-xl lg:text-3xl"></i
+            ></a>
+            <a
+              *ngIf="member.twitter"
+              href="{{ member.twitter }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><i class="pi pi-twitter text-brand-950 text-xl lg:text-3xl"></i
+            ></a>
+          </div>
         </div>
+      </div>
     </div>
-    <div class="clics flex justify-center items-center gap-12 py-10">
-        <button class="bg-brand-950 w-48 h-5 rounded-3xl" ></button>
-        <button class="bg-brand-200 w-48 h-5 rounded-3xl"></button>
-        <button class="bg-brand-200 w-48 h-5 rounded-3xl"></button>
-    </div>
+  </div>
+  <div class="hidden lg:flex justify-center items-center gap-12 py-10">
+    <button
+      class="w-48 h-5 rounded-3xl transition-all"
+      [ngClass]="{
+        'bg-brand-950': activeButtonIndex === 0,
+        'bg-brand-200': activeButtonIndex !== 0
+      }"
+      (click)="moveCarousel(0, 0)"
+    ></button>
+    <button
+      class="w-48 h-5 rounded-3xl transition-all"
+      [ngClass]="{
+        'bg-brand-950': activeButtonIndex === 1,
+        'bg-brand-200': activeButtonIndex !== 1
+      }"
+      (click)="moveCarousel(2, 1)"
+    ></button>
+    <button
+      class="w-48 h-5 rounded-3xl transition-all"
+      [ngClass]="{
+        'bg-brand-950': activeButtonIndex === 2,
+        'bg-brand-200': activeButtonIndex !== 2
+      }"
+      (click)="moveCarousel(4, 2)"
+    ></button>
+  </div>
 </div>
