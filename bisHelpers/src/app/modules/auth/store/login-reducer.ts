@@ -4,9 +4,9 @@ import { authActions } from './login-action';
 
 const initialState: AuthStateInterface = {
   isSubmitting: false,
-  token: null,
   user: undefined,
   validationErrors: null,
+  isLoggedIn: false,
 };
 
 const authFeature = createFeature({
@@ -22,7 +22,6 @@ const authFeature = createFeature({
       ...state,
       isSubmitting: false,
       user: action.loginresponse,
-      token: action.loginresponse.token,
     })),
     on(authActions.loginFailure, (state, action) => ({
       ...state,
@@ -38,4 +37,5 @@ export const {
   selectIsSubmitting,
   selectUser,
   selectValidationErrors,
+  selectIsLoggedIn,
 } = authFeature;

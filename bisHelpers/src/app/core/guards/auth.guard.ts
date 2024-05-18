@@ -1,27 +1,44 @@
-// auth.guard.ts
-
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { selectUser } from 'src/app/modules/auth/store/login-reducer';
+import { LocalStorageService } from '../services/local-storage.service';
+import { AuthService } from 'src/app/modules/auth/services/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private store: Store, private router: Router) {}
+  constructor(
+    private store: Store,
+    private router: Router,
+    private localStorageService: LocalStorageService,
+    private authService: AuthService
+  ) {}
+  // canActivate(): boolean {
+  //   return true;
+  // }
 
-  isUser$ = this.store.select(selectUser);
   canActivate(): Observable<boolean> {
-    return this.isUser$.pipe(
-      map((user) => {
-        if (user && user.token) {
+    const token = this.localStorageService.getItem('accessToken');
+    if (!token) {
+      this.router.navigateByUrl('/auth/login');
+      return of(false);
+    }
+
+    return this.authService.validateToken(token).pipe(
+      map((isValid) => {
+        if (isValid) {
           return true;
+        } else {
+          this.router.navigateByUrl('/auth/login');
+          return false;
         }
+      }),
+      catchError(() => {
         this.router.navigateByUrl('/auth/login');
-        return false;
+        return of(false);
       })
     );
   }
