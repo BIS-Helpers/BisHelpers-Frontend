@@ -1,0 +1,22 @@
+.carousel-container {
+  overflow-x: hidden;
+  white-space: nowrap;
+  width: 100%;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .carousel-container {
+    overflow-x: scroll;
+  }
+}
+
+.carousel {
+  display: inline-flex;
+  position: relative;
+  transition: all 0.5s;
+}
+
+.carousel-container::-webkit-scrollbar {
+  display: none;
+}

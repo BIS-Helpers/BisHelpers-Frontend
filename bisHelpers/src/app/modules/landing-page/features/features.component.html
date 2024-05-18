@@ -1,1 +1,15 @@
-<p>features works!</p>
+<div class="py-5 px-5 md:px-20">
+    <div class="flex flex-col items-center gap-8 pt-2">
+        <div class="p-2">
+        <h1 class=" max-w-[704px] text-paragraph-md leading-heading-sm md:text-heading-xxlg md:leading-heading-xxlg text-center font-semibold"> New Portal Of Bis Helpers To Make Your Learning Journey Easy</h1>
+        </div>
+        <img src="assets/images/Dashboard.jpg" class="shadow-xl border-4 border-opacity-[40%] border-solid border-[#0D677D] rounded-xl border-b-0 rounded-b-none">
+    </div>
+    <div class="grid grid-cols-1 pt-24 gap-10 md:gap-10 lg:gap-36 md:grid-cols-2 xl:grid-cols-3 pb-10">
+        <div class="card w-full py-7 px-5 rounded-3xl bg-[rgb(255,255,255)] flex flex-col items-center gap-2 shadow-lg"*ngFor="let card of cards">
+            <img [src]="card.icon">
+            <h3 class="p-2 text-paragraph-md md:text-heading-sm leading-paragraph-md font-semibold">{{card.title}}</h3>
+            <p class=" text-center text-paragraph-sm text-default-50 leading-5 max-w-[273px]">{{card.content}}</p>
+        </div>
+    </div>
+</div>

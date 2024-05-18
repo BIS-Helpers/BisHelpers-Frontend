@@ -1,1 +1,98 @@
-<p>header works!</p>
+<nav class="bg-white w-full top-0 start-0">
+  <div
+    class="flex flex-wrap items-center md:justify-normal justify-between py-5 px-5 lg:px-20"
+  >
+    <a [routerLink]="'/landing'" class="flex items-center">
+      <img src="assets/images/logo.png" class="w-16" alt="BisHelpers-Logo" />
+    </a>
+
+    <div class="flex md:order-2 space-x-3 md:space-x-0">
+      <button
+        data-collapse-toggle="navbar-sticky"
+        type="button"
+        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+        aria-controls="navbar-sticky"
+        aria-expanded="false"
+      >
+        <span class="sr-only">Open main menu</span>
+        <svg
+          class="w-5 h-5"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 17 14"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M1 1h15M1 7h15M1 13h15"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <div
+      class="items-center justify-between hidden w-full md:flex md:w-auto grow md:order-1"
+      id="navbar-sticky"
+    >
+      <ul
+        class="flex flex-col md:gap-2 px-0 md:px-6 py-1 mt-4 font-medium rounded-lg md:flex-row md:mt-0 md:bg-white"
+      >
+        <li
+          class="max-[768px]:hover:bg-gray-100 text-default-50 max-[768px]:px-2 max-[768px]:rounded-lg transition-all"
+        >
+          <a
+            [routerLink]="'/landing/home'"
+            routerLinkActive="text-brand-500"
+            class="block py-2 md:px-3 rounded hover:text-brand-500 transition-all"
+            aria-current="page"
+            >Home</a
+          >
+        </li>
+        <li
+          class="max-[768px]:hover:bg-gray-100 text-default-50 max-[768px]:px-2 max-[768px]:rounded-lg transition-all"
+        >
+          <a
+            [routerLink]="'/landing/about'"
+            routerLinkActive="text-brand-500"
+            class="block py-2 md:px-3 rounded hover:text-brand-500 transition-all"
+            aria-current="page"
+            >About</a
+          >
+        </li>
+        <li
+          class="max-[768px]:hover:bg-gray-100 text-default-50 max-[768px]:px-2 max-[768px]:rounded-lg transition-all"
+        >
+          <a
+            [routerLink]="'/landing/features'"
+            routerLinkActive="text-brand-500"
+            class="block py-2 md:px-3 rounded hover:text-brand-500 transition-all"
+            aria-current="page"
+            >Features</a
+          >
+        </li>
+        <li
+          class="max-[768px]:hover:bg-gray-100 text-default-50 max-[768px]:px-2 max-[768px]:rounded-lg transition-all"
+        >
+          <a
+            [routerLink]="'/landing/faqs'"
+            routerLinkActive="text-brand-500"
+            class="block py-2 md:px-3 rounded hover:text-brand-500 transition-all"
+            aria-current="page"
+            >FAQS</a
+          >
+        </li>
+      </ul>
+      <div class="flex items-center gap-4">
+        <a href="/auth/login">
+          <button type="button" class="btn-secondary">Login</button>
+        </a>
+        <a href="/auth/signup">
+          <button type="button" class="btn-primary">Sign up</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>

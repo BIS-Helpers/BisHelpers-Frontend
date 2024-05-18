@@ -1,0 +1,96 @@
+<div
+  class="form-gradient max-lg:h-screen flex items-center lg:py-10 py-5 px-5 lg:px-10"
+>
+  <div
+    class="image-form-gradient rounded-s-2xl lg:h-screen hidden lg:flex items-center justify-center rounded-e"
+  >
+    <img class="max-w-[500px]" src="assets/images/form.svg" alt="form Image" />
+  </div>
+  <ng-container *ngIf="data$ | async as data">
+    <div
+      class="bg-white px-5 rounded-2xl lg:grow flex flex-col justify-center items-center gap-5 lg:gap-10 py-5 w-full lg:w-auto"
+    >
+      <a href="#"
+        ><img class="max-w-[115px]" src="assets/images/logo.png" alt=""
+      /></a>
+      <h1
+        class="text-heading-sm lg:text-heading-lg lg:leading-heading-lg font-semibold"
+      >
+        Login
+      </h1>
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()"
+        action="post"
+        class="px-0 lg:px-5 py-2 flex flex-col gap-2 w-full max-w-lg lg:max-w-none"
+      >
+        <div class="flex flex-col gap-2">
+          <label class="text-paragraph-md" for="email"
+            >Email or College ID</label
+          >
+          <input
+            placeholder="John@email.com or 5121..."
+            class="rounded-lg bg-[#ECECEC] outline-none border-none focus:ring-0 lg:px-5 lg:py-4 p-2"
+            type="text"
+            formControlName="email"
+            id="email"
+          />
+        </div>
+        <ng-container *ngIf="data.backendErrors">
+          <ng-container *ngFor="let error of data.backendErrors">
+            <ng-container *ngIf="error.message === 'Email'">
+              <small class="text-red-600 pl-2">
+                <ul *ngFor="let detail of error.details">
+                  <li>{{ detail }}</li>
+                </ul>
+              </small>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+        <div class="flex flex-col gap-2">
+          <label class="text-paragraph-md" for="password">Password</label>
+          <p-password
+            placeholder="•••••••••"
+            class="modified-password-primeng"
+            formControlName="password"
+            id="password"
+            [toggleMask]="true"
+            [feedback]="false"
+          ></p-password>
+        </div>
+        <ng-container *ngIf="data.backendErrors">
+          <ng-container *ngFor="let error of data.backendErrors">
+            <ng-container *ngIf="error.message !== 'Email'">
+              <small class="text-red-600 pl-2">
+                <ul *ngFor="let detail of error.details">
+                  <li>{{ detail }}</li>
+                </ul>
+              </small>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+        <button
+          [disabled]="data.isSubmitting"
+          class="py-4 lg:py-5 flex items-center justify-center rounded-lg focus:outline-none mt-5 lg:mt-10
+        {{
+            data.isSubmitting
+              ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+              : 'bg-brand-500 text-white'
+          }}"
+        >
+          <ng-container *ngIf="data.isSubmitting">
+            <i
+              class="pi pi-spin pi-spinner text-brand-500"
+              style="font-size: 1rem"
+            ></i>
+          </ng-container>
+          {{ data.isSubmitting ? '' : 'Login' }}
+        </button>
+        <p class="self-start mt-5">
+          Don't have an account?
+          <a class="text-brand-500" [routerLink]="'/auth/signup'">SignUp</a>
+        </p>
+      </form>
+    </div>
+  </ng-container>
+</div>

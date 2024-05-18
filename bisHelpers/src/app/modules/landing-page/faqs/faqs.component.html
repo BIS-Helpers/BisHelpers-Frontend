@@ -1,1 +1,183 @@
-<p>faqs works!</p>
+<div class="py-5 lg:py-10 px-5 lg:px-20 overflow-hidden">
+  <!-- app-hero -->
+  <div
+    class="brief flex flex-col lg:flex-row gap-8 lg:gap-10 justify-between items-center lg:items-start py-10 lg:py-20"
+  >
+    <iframe
+      class="rounded-lg shadow-lg md:w-[658px] md:h-[364px] w-fit"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3452.7845430372145!2d31.218377075011436!3d30.071709817279352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145840fc5cf0dcfb%3A0x5c8b8a3b52b6bcbc!2sFaculty%20of%20Commerce%20and%20Business%20Administration%20Helwan%20University!5e0!3m2!1sen!2seg!4v1715505480541!5m2!1sen!2seg"
+      style="border: 0"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+    <p-galleria
+      [value]="images"
+      [autoPlay]="true"
+      [showIndicators]="true"
+      [circular]="true"
+      [showThumbnails]="false"
+      [containerStyle]="{ 'max-width': '640px' }"
+      class="transition-all"
+    >
+      <ng-template pTemplate="item" let-item>
+        <img
+          loading="lazy"
+          [src]="item.source"
+          class="rounded-lg shadow-lg md:w-[658px] md:h-[364px] transition-all"
+        />
+      </ng-template>
+    </p-galleria>
+  </div>
+
+  <div>
+    <p-accordion [activeIndex]="0">
+      <p-accordionTab
+        class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+        header="How is the study structure within the BIS Program organized?"
+      >
+        <p
+          class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+        >
+          The program operates on a credit hour system, with the academic year
+          split into two semesters, and the possibility of an additional summer
+          term.
+        </p>
+      </p-accordionTab>
+      <p-accordionTab
+        class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+        header="What are the requirements for obtaining a bachelor's degree in the BIS Program?"
+      >
+        <p
+          class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+        >
+          To graduate, a student must successfully complete 129 credit hours
+          across at least eight semesters, excluding summer terms. These
+          semesters are distributed over four academic levels.
+        </p>
+      </p-accordionTab>
+      <p-accordionTab
+        class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+        header="What are the credit hour limits for registration in each semester?"
+      >
+        <p
+          class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+        >
+          Students can register for a minimum of 9 credit hours and a maximum of
+          18 credit hours per semester. Exceptions may be made for graduation
+          cases with the approval of the program supervisor.
+        </p>
+      </p-accordionTab>
+      <p-accordionTab
+        class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+        header="Requirements for joining the program"
+      >
+        <p-accordion>
+          <p-accordionTab
+            class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+            header="What is the GCSE requirement for admission to the Business Information Systems program?"
+          >
+            <p
+              class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+            >
+              The student must have a General Certificate of Secondary Education
+              (GCSE) in the same academic year of admission.
+            </p>
+          </p-accordionTab>
+          <p-accordionTab
+            class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+            header="How can I apply to the Faculty of Commerce and Business Administration for admission to the program?"
+          >
+            <p
+              class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+            >
+              To be admitted, you must first be accepted into the Faculty of
+              Commerce and Business Administration as a regular (full-time)
+              student through the Coordination Office in the same year of
+              admission. Please note that external students are not accepted
+              into the Business Information Systems program.
+            </p>
+          </p-accordionTab>
+          <p-accordionTab
+            class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+            header="What is the minimum score requirement for the English language?"
+          >
+            <p
+              class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+            >
+              The minimum score for English proficiency will be determined based
+              on coordination and admission indicators. Additionally, preference
+              is given to applicants with English as their first foreign
+              language.
+            </p>
+          </p-accordionTab>
+          <p-accordionTab
+            class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+            header="Are there any specific requirements for holders of IGCSE certificates?
+          "
+          >
+            <p
+              class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+            >
+              Yes, holders of an IGCSE certificate must have a minimum grade of
+              (C) in the English language subject.
+            </p>
+          </p-accordionTab>
+          <p-accordionTab
+            class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+            header="What about applicants with the American High School Diploma?
+          "
+          >
+            <p
+              class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+            >
+              Applicants with the American High School Diploma must also have a
+              minimum grade of (C) in the English language subject.
+            </p>
+          </p-accordionTab>
+          <p-accordionTab
+            class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+            header="How are students selected during the admission process?
+          "
+          >
+            <p
+              class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+            >
+              Student selection is based on the total sum of grades obtained,
+              including secondary education total grade, English language
+              subject grade, and high-level degree in English language subject
+              if available.
+            </p>
+          </p-accordionTab>
+          <p-accordionTab
+            class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+            header="Is there priority given to certain types of applicants?
+          "
+          >
+            <p
+              class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+            >
+              Yes, priority of acceptance is given to students nominated
+              directly from the Coordination Office. Transfer students from
+              other universities are considered based on available vacancies.
+            </p>
+          </p-accordionTab>
+          <p-accordionTab
+            class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+            header="How will I know if I've been accepted into the program?
+          "
+          >
+            <p
+              class="text-paragraph-sm lg:text-paragraph-lg md:text-paragraph-md leading-paragraph-lg"
+            >
+              A decision will be issued by the Faculty Council and approved by
+              the President of the University. Accepted students will be listed
+              on the program's official website and announced at the faculty's
+              headquarters.
+            </p>
+          </p-accordionTab>
+        </p-accordion>
+      </p-accordionTab>
+    </p-accordion>
+  </div>
+</div>

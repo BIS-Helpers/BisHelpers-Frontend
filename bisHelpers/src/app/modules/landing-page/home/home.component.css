@@ -1,0 +1,38 @@
+.counter-gradient {
+  background-image: linear-gradient(
+    to right,
+    #cbfffe 0%,
+    #9efeff 50%,
+    #5bf9ff 75%,
+    #00cde5 100%
+  );
+}
+@media (max-width: 768px) {
+  .counter-gradient {
+    background-image: linear-gradient(
+      to bottom,
+      #cbfffe 0%,
+      #5bf9ff 75%,
+      #00cde5 100%
+    );
+  }
+}
+.news-letter-gradient {
+  background-image: linear-gradient(
+    to right,
+    #033849 25%,
+    #0d677d 50%,
+    #00a3c0 100%
+  );
+}
+
+@media (max-width: 768px) {
+  .news-letter-gradient {
+    background-image: linear-gradient(
+      to bottom,
+      #033849 25%,
+      #0d677d 75%,
+      #00a3c0 100%
+    );
+  }
+}
