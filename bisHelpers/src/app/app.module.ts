@@ -15,6 +15,7 @@ import {
 } from 'src/app/modules/auth/store/login-reducer';
 import { provideEffects } from '@ngrx/effects';
 import * as authEffects from 'src/app/modules/auth/store/login-effects';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,7 @@ import * as authEffects from 'src/app/modules/auth/store/login-effects';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    CoreModule,
   ],
   providers: [
     provideStore(),

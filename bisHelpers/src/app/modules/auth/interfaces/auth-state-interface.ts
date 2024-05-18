@@ -4,6 +4,6 @@ import { LoginResponseInterface } from './login-response-interface';
 export interface AuthStateInterface {
   isSubmitting: boolean;
   user: LoginResponseInterface | null | undefined;
-  token: string | null;
   validationErrors: ErrorBody[] | null | undefined;
+  isLoggedIn: boolean;
 }
