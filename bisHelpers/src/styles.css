@@ -65,4 +65,11 @@
   border-radius: 5px;
 }
 
-/* Handle on hover */
+.modified-password-primeng .p-password,
+.modified-password-primeng .p-inputtext {
+  @apply w-full;
+}
+
+.modified-password-primeng .p-inputtext {
+  @apply rounded-lg bg-[#ECECEC] outline-none border-none focus:ring-0 lg:px-5 lg:py-4 p-2;
+}

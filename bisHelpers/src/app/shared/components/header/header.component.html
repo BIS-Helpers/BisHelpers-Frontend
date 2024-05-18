@@ -46,7 +46,7 @@
           <a
             [routerLink]="'/landing/home'"
             routerLinkActive="text-brand-500"
-            class="block py-2 md:px-3  rounded hover:text-brand-500 transition-all"
+            class="block py-2 md:px-3 rounded hover:text-brand-500 transition-all"
             aria-current="page"
             >Home</a
           >
@@ -57,7 +57,7 @@
           <a
             [routerLink]="'/landing/about'"
             routerLinkActive="text-brand-500"
-            class="block py-2 md:px-3  rounded hover:text-brand-500 transition-all"
+            class="block py-2 md:px-3 rounded hover:text-brand-500 transition-all"
             aria-current="page"
             >About</a
           >
@@ -68,7 +68,7 @@
           <a
             [routerLink]="'/landing/features'"
             routerLinkActive="text-brand-500"
-            class="block py-2 md:px-3  rounded hover:text-brand-500 transition-all"
+            class="block py-2 md:px-3 rounded hover:text-brand-500 transition-all"
             aria-current="page"
             >Features</a
           >
@@ -79,27 +79,19 @@
           <a
             [routerLink]="'/landing/faqs'"
             routerLinkActive="text-brand-500"
-            class="block py-2 md:px-3  rounded hover:text-brand-500 transition-all"
+            class="block py-2 md:px-3 rounded hover:text-brand-500 transition-all"
             aria-current="page"
             >FAQS</a
           >
         </li>
       </ul>
       <div class="flex items-center gap-4">
-        <button
-          type="button"
-          class="btn-secondary"
-          [routerLink]="'/landing/login'"
-        >
-          Login
-        </button>
-        <button
-          type="button"
-          class="btn-primary"
-          [routerLink]="'/landing/signup'"
-        >
-          Sign up
-        </button>
+        <a href="/auth/login">
+          <button type="button" class="btn-secondary">Login</button>
+        </a>
+        <a href="/auth/signup">
+          <button type="button" class="btn-primary">Sign up</button>
+        </a>
       </div>
     </div>
   </div>
