@@ -28,6 +28,10 @@ const childRoutes: Routes = [
     path: 'about',
     component: AboutComponent,
   },
+  {
+    path: '**',
+    redirectTo: 'home',
+  },
 ];
 
 const routes: Routes = [
