@@ -9,6 +9,8 @@ import { SignupComponent } from './signup/signup.component';
 
 //PrimeNG
 import { PasswordModule } from 'primeng/password';
+import { CalendarModule } from 'primeng/calendar';
+import { FormsModule } from '@angular/forms'; 
 
 @NgModule({
   declarations: [LoginComponent, SignupComponent],
@@ -17,6 +19,8 @@ import { PasswordModule } from 'primeng/password';
     AuthRoutingModule,
     ReactiveFormsModule,
     PasswordModule,
+    CalendarModule,
+    FormsModule
   ],
   providers: [],
 })
