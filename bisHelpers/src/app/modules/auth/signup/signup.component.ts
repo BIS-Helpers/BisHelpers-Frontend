@@ -1,41 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { CalendarModule } from 'primeng/calendar';
+
+interface types {
+  name: string;
+}
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
 })
-export class SignupComponent implements OnInit{
-  signupForm: FormGroup =new FormGroup ({});
-  
-  date1: Date | undefined;
-  date2: Date | undefined;
-  
-  constructor(private fb: FormBuilder) {}
+
+export class SignupComponent implements OnInit {
+  signupForm: FormGroup = new FormGroup({});
+
+  datejoin: Date | undefined;
+  datebirth: Date | undefined;
+  gender: types[] | undefined;
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.signupForm = this.fb.nonNullable.group({
-      name:['',[Validators.required],Validators.minLength(4)],
-      phone: ['', [Validators.required], Validators.pattern('^[0-9]*$')],
-      email: ['', [Validators.required]],
-      collageid: ['', [Validators.required],Validators.minLength(9)],
-      password: ['', [Validators.required],Validators.minLength(8)],
-      confirmPassword: ['', [Validators.required], Validators.minLength(8)],
-      joinDate: ['', [Validators.required]],
-      birthDate: ['', [Validators.required]],
-      gender: ['', [Validators.required]]
+      name: ['', Validators.required],
+      phone: ['', Validators.required],
+      email: ['', Validators.required],
+      collageid: ['', Validators.required],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+      joinDate: ['', Validators.required],
+      birthDate: ['', Validators.required],
+      gender: ['', Validators.required]
     });
-  }
-  passwordMatchValidator(form: FormGroup) {
-    return form.get('password')?.value === form.get('confirmPassword')?.value 
-      ? null : { 'mismatch': true };
-  }
-  onSubmit() {
-    if (this.signupForm.valid) {
-      console.log(this.signupForm.value);
-    } else {
-      console.log('Form is not valid');
-    }
-  }
- }
+
+    this.gender = [
+            { name: 'Male'},
+            { name: 'Female' },
+        ];
+
+}
+}

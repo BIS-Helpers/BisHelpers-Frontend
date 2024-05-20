@@ -29,8 +29,4 @@
     left: 80%;
     transform: translate(-50%, -50%);
   }
-  input[type="date"]::-webkit-datetime-edit-fields-wrapper {
-    @apply text-default-50 pe-1
 
-  }
-  
