@@ -1,1 +1,108 @@
-<p>signup works!</p>
+<div class="form-gradient  flex items-center lg:py-10 py-5 px-5 lg:px-10">
+  <div class="image-form-gradient rounded-s-2xl lg:h-screen hidden lg:flex items-center justify-center rounded-e">
+    <img class="max-w-[500px]" src="assets/images/Signup.svg" alt="form Image" />
+  </div>
+  <ng-container>
+    <div
+      class="bg-white px-5 md:px-10 rounded-2xl lg:grow flex flex-col justify-center items-center gap-5 lg:gap-10 py-5 w-full lg:w-auto">
+      <a href="#"><img class="max-w-[115px]" src="assets/images/logo.png" alt="" /></a>
+      <h1 class="text-heading-sm lg:text-heading-lg lg:leading-heading-lg font-semibold">
+        Create an account
+      </h1>
+      <form class="px-0 py-2 grid grid-cols-1 xl:grid-cols-4 gap-5 w-full" [formGroup]="signupForm">
+        <div class="flex flex-col gap-2 col-span-4 xl:col-span-2">
+          <label class="text-paragraph-md " for="name">Full Name</label>
+          <input placeholder="John"
+            class="rounded-lg bg-[#ECECEC] outline-none border-none focus:ring-0 lg:px-5 lg:py-4 p-2 w-full" type="text"
+            formControlName="name" id="name" />
+          <small *ngIf="signupForm.get('name')?.invalid && signupForm.get('name')?.touched" class="text-red-500">
+            Name is required and should be at least 4 characters long</small>
+        </div>
+        <div class="flex flex-col gap-2 col-span-4 xl:col-span-2">
+          <label class="text-paragraph-md" for="phone">Phone Number</label>
+          <input placeholder="01xxxxxxxxx"
+            class="rounded-lg bg-[#ECECEC] outline-none border-none focus:ring-0 lg:px-5 lg:py-4 p-2 w-full" type="text"
+            formControlName="phone" id="phone" />
+          <small *ngIf="signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched" class="text-red-500">
+            Phone number is required and should contain only digits.</small>
+        </div>
+        <div class="flex flex-col gap-2 col-span-4 xl:col-span-2">
+          <label class="text-paragraph-md" for="email">Email</label>
+          <input placeholder="John@email.com "
+            class="rounded-lg bg-[#ECECEC] outline-none border-none focus:ring-0 lg:px-5 lg:py-4 p-2 w-full"
+            type="email" formControlName="email" id="email" />
+          <small *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="text-red-500">
+            Enter a valid email.</small>
+        </div>
+        <div class="flex flex-col gap-2 col-span-4 xl:col-span-2">
+          <label class="text-paragraph-md" for="collageid">Collage ID</label>
+          <input placeholder="5121xxxx"
+            class="rounded-lg bg-[#ECECEC] outline-none border-none focus:ring-0 lg:px-5 lg:py-4 p-2 w-full" type="text"
+            formControlName="collageid" id="collageid" />
+          <small *ngIf="signupForm.get('collageid')?.invalid && signupForm.get('collageid')?.touched"
+            class="text-red-500">
+            Collage ID is required.</small>
+        </div>
+
+        <div class="flex flex-col gap-2 col-span-4 xl:col-span-2">
+          <label class="text-paragraph-md" for="password">Password</label>
+          <p-password placeholder="•••••••••" class="modified-password-primeng" formControlName="password" id="password"
+            [toggleMask]="true" [feedback]="false"></p-password>
+          <small *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched"
+            class="text-red-500">
+            Password is required </small>
+        </div>
+        <div class="flex flex-col gap-2 col-span-4 xl:col-span-2">
+          <label class="text-paragraph-md" for="confirmPassword ">Confirm Password</label>
+          <p-password placeholder="•••••••••" class="modified-password-primeng" formControlName="confirmPassword"
+            id="confirmPassword" [toggleMask]="true" [feedback]="false"></p-password>
+          <small *ngIf="signupForm.hasError('mismatch') && signupForm.get('confirmPassword')?.touched"
+            class="text-red-500">
+            Passwords must match.</small>
+        </div>
+        <div class="col-span-4">
+          <div class="flex gap-5 flex-col xl:flex-row justify-between">
+            <div class="flex flex-col gap-2 ">
+              <label class="text-paragraph-md" for="joinDate">Joined Date</label>
+              <p-calendar [(ngModel)]="datejoin" [showIcon]="true"
+                class="rounded-lg outline-none  focus:ring-0  shadow-none" formControlName="joinDate"
+                placeholder="yyyy-mm-dd"></p-calendar>
+              <small *ngIf="signupForm.get('joinDate')?.invalid && signupForm.get('joinDate')?.touched"
+                class="text-red-500">
+                Joined Date is required.</small>
+            </div>
+            <div class="flex flex-col gap-2 ">
+              <label class="text-paragraph-md" for="birthDate">Birth Date</label>
+              <p-calendar [(ngModel)]="datebirth" [showIcon]="true"
+                class="rounded-lg outline-none  focus:ring-0  w-full shadow-none" formControlName="birthDate"
+                placeholder="yyyy-mm-dd"></p-calendar>
+              <small *ngIf="signupForm.get('birthDate')?.invalid && signupForm.get('birthDate')?.touched"
+                class="text-red-500">
+                Birth Date is required.</small>
+            </div>
+            <div class="flex flex-col gap-2">
+              <label class="text-paragraph-md " for="gender">Gender</label>
+              <p-dropdown formControlName="selectedCity" [options]="gender" optionLabel="name"
+                class="rounded-lg outline-none  focus:ring-0  w-full shadow-none " placeholder="Select a Gender"
+                formControlName="gender"></p-dropdown>
+
+              <small *ngIf="signupForm.get('gender')?.invalid && signupForm.get('gender')?.touched"
+                class="text-red-500">
+                Gender is required.
+              </small>
+            </div>
+          </div>
+
+        </div>
+        <button class="py-4 lg:py-5 flex items-center justify-center rounded-lg
+                focus:outline-none mt-5 lg:mt-1 bg-brand-500 w-full text-white col-span-4" type="submit"
+          [disabled]="signupForm.invalid">
+          Sign Up</button>
+        <p class="self-start  col-span-4">
+          Already have an account ?
+          <a class="text-brand-500" [routerLink]="'/auth/login'">LogIn</a>
+        </p>
+      </form>
+    </div>
+  </ng-container>
+</div>
