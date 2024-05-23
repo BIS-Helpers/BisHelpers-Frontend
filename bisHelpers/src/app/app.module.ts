@@ -10,12 +10,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import {
-  authFeatureKey,
-  authReducer,
+  loginAuthFeatureKey,
+  loginReducer,
 } from 'src/app/modules/auth/store/login-reducer';
 import { provideEffects } from '@ngrx/effects';
-import * as authEffects from 'src/app/modules/auth/store/login-effects';
+import * as loginEffects from 'src/app/modules/auth/store/login-effects';
+import * as signupEffects from 'src/app/modules/auth/store/signup-effects';
 import { CoreModule } from './core/core.module';
+import {
+  signupAuthFeatureKey,
+  signupReducer,
+} from './modules/auth/store/signup-reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,8 +40,9 @@ import { CoreModule } from './core/core.module';
       trace: false,
       traceLimit: 75,
     }),
-    provideState(authFeatureKey, authReducer),
-    provideEffects(authEffects),
+    provideState(loginAuthFeatureKey, loginReducer),
+    provideState(signupAuthFeatureKey, signupReducer),
+    provideEffects(loginEffects, signupEffects),
   ],
   bootstrap: [AppComponent],
 })

@@ -1,104 +1,297 @@
-<div class="form-gradient  flex items-center lg:py-10 py-5 px-5 lg:px-10">
-  <div class="image-form-gradient rounded-s-2xl lg:h-screen hidden lg:flex items-center justify-center rounded-e">
-    <img class="max-w-[500px]" src="assets/images/Signup.svg" alt="form Image" />
+<div class="form-gradient flex items-center lg:py-10 py-5 px-5 lg:px-10">
+  <div
+    class="image-form-gradient rounded-s-2xl lg:h-screen hidden lg:flex items-center justify-center rounded-e"
+  >
+    <img
+      class="max-w-[500px]"
+      src="assets/images/Signup.svg"
+      alt="form Image"
+    />
   </div>
-  <ng-container>
+  <ng-container *ngIf="data$ | async as data">
     <div
-      class="bg-white px-5 md:px-10 rounded-2xl lg:grow flex flex-col justify-center items-center gap-5 lg:gap-10 py-5 w-full lg:w-auto">
-      <a href="#"><img class="max-w-[115px]" src="assets/images/logo.png" alt="" /></a>
-      <h1 class="text-heading-sm lg:text-heading-lg lg:leading-heading-lg font-semibold">
+      class="bg-white px-5 md:px-10 rounded-2xl lg:grow flex flex-col justify-center items-center gap-5 lg:gap-10 py-5 w-full lg:w-auto"
+    >
+      <a routerLink="/"
+        ><img class="max-w-[115px]" src="assets/images/logo.png" alt=""
+      /></a>
+      <h1
+        class="text-heading-sm lg:text-heading-lg lg:leading-heading-lg font-semibold"
+      >
         Create an account
       </h1>
-      <form class="px-0 py-2 grid grid-cols-1 xl:grid-cols-4 gap-5 w-full" [formGroup]="signupForm">
+      <form
+        class="px-0 py-2 grid grid-cols-1 xl:grid-cols-4 gap-5 w-full"
+        [formGroup]="signupForm"
+        (ngSubmit)="onSubmit()"
+      >
         <div class="flex flex-col gap-2 col-span-4 xl:col-span-2">
-          <label class="text-paragraph-md " for="name">Full Name</label>
-          <input placeholder="John"
-            class="rounded-lg bg-[#ECECEC] outline-none border-none focus:ring-0 lg:px-5 lg:py-4 p-2 w-full" type="text"
-            formControlName="name" id="name" />
-          <small *ngIf="signupForm.get('name')?.invalid && signupForm.get('name')?.touched" class="text-red-500">
-            Name is required and should be at least 4 characters long</small>
-        </div>
-        <div class="flex flex-col gap-2 col-span-4 xl:col-span-2">
-          <label class="text-paragraph-md" for="phone">Phone Number</label>
-          <input placeholder="01xxxxxxxxx"
-            class="rounded-lg bg-[#ECECEC] outline-none border-none focus:ring-0 lg:px-5 lg:py-4 p-2 w-full" type="text"
-            formControlName="phone" id="phone" />
-          <small *ngIf="signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched" class="text-red-500">
-            Phone number is required and should contain only digits.</small>
-        </div>
-        <div class="flex flex-col gap-2 col-span-4 xl:col-span-2">
-          <label class="text-paragraph-md" for="email">Email</label>
-          <input placeholder="John@email.com "
+          <label class="text-paragraph-md" for="fullName">Full Name</label>
+          <input
+            maxlength="30"
+            placeholder="John"
             class="rounded-lg bg-[#ECECEC] outline-none border-none focus:ring-0 lg:px-5 lg:py-4 p-2 w-full"
-            type="email" formControlName="email" id="email" />
-          <small *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="text-red-500">
-            Enter a valid email.</small>
-        </div>
-        <div class="flex flex-col gap-2 col-span-4 xl:col-span-2">
-          <label class="text-paragraph-md" for="collageid">Collage ID</label>
-          <input placeholder="5121xxxx"
-            class="rounded-lg bg-[#ECECEC] outline-none border-none focus:ring-0 lg:px-5 lg:py-4 p-2 w-full" type="text"
-            formControlName="collageid" id="collageid" />
-          <small *ngIf="signupForm.get('collageid')?.invalid && signupForm.get('collageid')?.touched"
-            class="text-red-500">
-            Collage ID is required.</small>
+            type="text"
+            formControlName="fullName"
+            id="fullName"
+          />
+          <ng-container
+            *ngIf="
+              signupForm.get('fullName')?.invalid &&
+              (signupForm.get('fullName')?.dirty ||
+                signupForm.get('fullName')?.touched)
+            "
+          >
+            <small
+              *ngIf="signupForm.get('fullName')?.errors"
+              class="text-red-500"
+            >
+              {{ getErrorMessage('fullName') }}
+            </small>
+          </ng-container>
         </div>
 
         <div class="flex flex-col gap-2 col-span-4 xl:col-span-2">
-          <label class="text-paragraph-md" for="password">Password</label>
-          <p-password placeholder="•••••••••" class="modified-password-primeng" formControlName="password" id="password"
-            [toggleMask]="true" [feedback]="false"></p-password>
-          <small *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched"
-            class="text-red-500">
-            Password is required </small>
+          <label class="text-paragraph-md" for="email">Email</label>
+          <input
+            placeholder="John@email.com "
+            class="rounded-lg bg-[#ECECEC] outline-none border-none focus:ring-0 lg:px-5 lg:py-4 p-2 w-full"
+            type="email"
+            formControlName="email"
+            id="email"
+          />
+          <ng-container
+            *ngIf="
+              signupForm.get('email')?.invalid &&
+              (signupForm.get('email')?.dirty ||
+                signupForm.get('email')?.touched)
+            "
+          >
+            <small *ngIf="signupForm.get('email')?.errors" class="text-red-500">
+              {{ getErrorMessage('email') }}
+            </small>
+          </ng-container>
         </div>
         <div class="flex flex-col gap-2 col-span-4 xl:col-span-2">
-          <label class="text-paragraph-md" for="confirmPassword ">Confirm Password</label>
-          <p-password placeholder="•••••••••" class="modified-password-primeng" formControlName="confirmPassword"
-            id="confirmPassword" [toggleMask]="true" [feedback]="false"></p-password>
-          <small *ngIf="signupForm.hasError('mismatch') && signupForm.get('confirmPassword')?.touched"
-            class="text-red-500">
-            Passwords must match.</small>
+          <label class="text-paragraph-md" for="collegeId">Collage ID</label>
+          <input
+            placeholder="(eg. 5121XXXX)"
+            class="rounded-lg bg-[#ECECEC] outline-none border-none focus:ring-0 lg:px-5 lg:py-4 p-2 w-full"
+            type="text"
+            formControlName="collegeId"
+            id="collegeId"
+          />
+          <ng-container
+            *ngIf="
+              signupForm.get('collegeId')?.invalid &&
+              (signupForm.get('collegeId')?.dirty ||
+                signupForm.get('collegeId')?.touched)
+            "
+          >
+            <small
+              *ngIf="signupForm.get('collegeId')?.errors"
+              class="text-red-500"
+            >
+              {{ getErrorMessage('collegeId') }}
+            </small>
+          </ng-container>
+        </div>
+        <div class="flex flex-col gap-2 col-span-4 xl:col-span-2">
+          <label class="text-paragraph-md" for="phoneNumber"
+            >Phone Number</label
+          >
+          <input
+            maxlength="11"
+            placeholder="(eg. 010XXXXXXXX)"
+            class="rounded-lg bg-[#ECECEC] outline-none border-none focus:ring-0 lg:px-5 lg:py-4 p-2 w-full"
+            type="text"
+            formControlName="phoneNumber"
+            id="phoneNumber"
+          />
+          <ng-container
+            *ngIf="
+              signupForm.get('phoneNumber')?.invalid &&
+              (signupForm.get('phoneNumber')?.dirty ||
+                signupForm.get('phoneNumber')?.touched)
+            "
+          >
+            <small
+              *ngIf="signupForm.get('phoneNumber')?.errors"
+              class="text-red-500"
+            >
+              {{ getErrorMessage('phoneNumber') }}
+            </small>
+          </ng-container>
+        </div>
+        <div class="flex flex-col gap-2 col-span-4 xl:col-span-2">
+          <label class="text-paragraph-md" for="password">Password</label>
+          <p-password
+            placeholder="•••••••••"
+            class="modified-password-primeng"
+            formControlName="password"
+            id="password"
+            [toggleMask]="true"
+            [feedback]="false"
+          ></p-password>
+          <ng-container
+            *ngIf="
+              signupForm.get('password')?.invalid &&
+              (signupForm.get('password')?.dirty ||
+                signupForm.get('password')?.touched)
+            "
+          >
+            <small
+              *ngIf="signupForm.get('password')?.errors"
+              class="text-red-500"
+            >
+              {{ getErrorMessage('password') }}
+            </small>
+          </ng-container>
+        </div>
+        <div class="flex flex-col gap-2 col-span-4 xl:col-span-2">
+          <label class="text-paragraph-md" for="confirmPassword "
+            >Confirm Password</label
+          >
+          <p-password
+            placeholder="•••••••••"
+            class="modified-password-primeng"
+            formControlName="confirmPassword"
+            id="confirmPassword"
+            [toggleMask]="true"
+            [feedback]="false"
+          ></p-password>
+          <ng-container
+            *ngIf="
+              signupForm.get('confirmPassword')?.invalid &&
+              (signupForm.get('confirmPassword')?.dirty ||
+                signupForm.get('confirmPassword')?.touched)
+            "
+          >
+            <small
+              *ngIf="signupForm.get('confirmPassword')?.errors"
+              class="text-red-500"
+            >
+              {{ getErrorMessage('confirmPassword') }}
+            </small>
+          </ng-container>
         </div>
         <div class="col-span-4">
           <div class="flex gap-5 flex-col xl:flex-row justify-between">
-            <div class="flex flex-col gap-2 ">
-              <label class="text-paragraph-md" for="joinDate">Joined Date</label>
-              <p-calendar [(ngModel)]="datejoin" [showIcon]="true"
-                class="rounded-lg outline-none  focus:ring-0  shadow-none" formControlName="joinDate"
-                placeholder="yyyy-mm-dd"></p-calendar>
-              <small *ngIf="signupForm.get('joinDate')?.invalid && signupForm.get('joinDate')?.touched"
-                class="text-red-500">
-                Joined Date is required.</small>
+            <div class="flex basis-1/3 flex-col gap-2">
+              <div class="flex items-center gap-1">
+                <label class="text-paragraph-md" for="dateOfJoin">
+                  Joined Date
+                </label>
+                <i
+                  class="pi pi-info-circle text-brand-500"
+                  pTooltip="When did you join the BIS?"
+                  tooltipPosition="right"
+                ></i>
+              </div>
+              <p-calendar
+                [showIcon]="true"
+                class="custom-calendar rounded-lg outline-none focus:ring-0 shadow-none"
+                formControlName="dateOfJoin"
+                placeholder="dd-mm-yyyy"
+              ></p-calendar>
+              <ng-container
+                *ngIf="
+                  signupForm.get('dateOfJoin')?.invalid &&
+                  (signupForm.get('dateOfJoin')?.dirty ||
+                    signupForm.get('dateOfJoin')?.touched)
+                "
+              >
+                <small
+                  *ngIf="signupForm.get('dateOfJoin')?.errors"
+                  class="text-red-500"
+                >
+                  {{ getErrorMessage('dateOfJoin') }}
+                </small>
+              </ng-container>
             </div>
-            <div class="flex flex-col gap-2 ">
-              <label class="text-paragraph-md" for="birthDate">Birth Date</label>
-              <p-calendar [(ngModel)]="datebirth" [showIcon]="true"
-                class="rounded-lg outline-none  focus:ring-0  w-full shadow-none" formControlName="birthDate"
-                placeholder="yyyy-mm-dd"></p-calendar>
-              <small *ngIf="signupForm.get('birthDate')?.invalid && signupForm.get('birthDate')?.touched"
-                class="text-red-500">
-                Birth Date is required.</small>
+            <div class="flex basis-1/3 flex-col gap-2">
+              <label class="text-paragraph-md" for="birthDate"
+                >Birth Date</label
+              >
+              <p-calendar
+                [showIcon]="true"
+                class="custom-calendar rounded-lg outline-none focus:ring-0 w-full shadow-none"
+                formControlName="birthDate"
+                placeholder="dd-mm-yyyy"
+              ></p-calendar>
+              <ng-container
+                *ngIf="
+                  signupForm.get('birthDate')?.invalid &&
+                  (signupForm.get('birthDate')?.dirty ||
+                    signupForm.get('birthDate')?.touched)
+                "
+              >
+                <small
+                  *ngIf="signupForm.get('birthDate')?.errors"
+                  class="text-red-500"
+                >
+                  {{ getErrorMessage('birthDate') }}
+                </small>
+              </ng-container>
             </div>
-            <div class="flex flex-col gap-2">
-              <label class="text-paragraph-md " for="gender">Gender</label>
-              <p-dropdown formControlName="selectedCity" [options]="gender" optionLabel="name"
-                class="rounded-lg outline-none  focus:ring-0  w-full shadow-none " placeholder="Select a Gender"
-                formControlName="gender"></p-dropdown>
+            <div class="flex basis-1/3 flex-col gap-2">
+              <label class="text-paragraph-md" for="gender">Gender</label>
+              <p-dropdown
+                formControlName="selectedCity"
+                [options]="genderOptions"
+                optionLabel="type"
+                class="custom-dropdown rounded-lg outline-none focus:ring-0 w-full shadow-none"
+                placeholder="Select a Gender"
+                formControlName="gender"
+              ></p-dropdown>
 
-              <small *ngIf="signupForm.get('gender')?.invalid && signupForm.get('gender')?.touched"
-                class="text-red-500">
-                Gender is required.
-              </small>
+              <ng-container
+                *ngIf="
+                  signupForm.get('gender')?.invalid &&
+                  (signupForm.get('gender')?.dirty ||
+                    signupForm.get('gender')?.touched)
+                "
+              >
+                <small
+                  *ngIf="signupForm.get('gender')?.errors"
+                  class="text-red-500"
+                >
+                  {{ getErrorMessage('gender') }}
+                </small>
+              </ng-container>
             </div>
           </div>
-
         </div>
-        <button class="py-4 lg:py-5 flex items-center justify-center rounded-lg
-                focus:outline-none mt-5 lg:mt-1 bg-brand-500 w-full text-white col-span-4" type="submit"
-          [disabled]="signupForm.invalid">
-          Sign Up</button>
-        <p class="self-start  col-span-4">
+        <!-- <ng-container *ngIf="data.backendErrors">
+          <ng-container *ngFor="let error of data.backendErrors">
+            <ng-container *ngIf="error.message">
+              <small class="text-red-600 pl-2">
+                <ul *ngFor="let detail of error.details">
+                  <li>{{ detail }}</li>
+                </ul>
+              </small>
+            </ng-container>
+          </ng-container>
+        </ng-container> -->
+        <button
+          [disabled]="data.isSubmitting || signupForm.invalid"
+          class="py-4 lg:py-5 flex items-center justify-center rounded-lg focus:outline-none mt-5 lg:mt-1 col-span-4
+          {{
+            data.isSubmitting || signupForm.invalid
+              ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+              : 'bg-brand-500 text-white'
+          }}"
+          type="submit"
+        >
+          <ng-container *ngIf="data.isSubmitting">
+            <i
+              class="pi pi-spin pi-spinner text-brand-500"
+              style="font-size: 1rem"
+            ></i>
+          </ng-container>
+          {{ data.isSubmitting ? '' : 'Sign Up' }}
+        </button>
+        <p class="self-start col-span-4">
           Already have an account ?
           <a class="text-brand-500" [routerLink]="'/auth/login'">LogIn</a>
         </p>

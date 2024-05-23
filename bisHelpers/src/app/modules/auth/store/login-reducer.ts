@@ -1,29 +1,29 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { AuthStateInterface } from '../interfaces/auth-state-interface';
-import { authActions } from './login-action';
+import { AuthLoginStateInterface } from '../interfaces/auth-login-state.interface';
+import { loginAuthActions } from './login-action';
 
-const initialState: AuthStateInterface = {
+const initialState: AuthLoginStateInterface = {
   isSubmitting: false,
   user: undefined,
   validationErrors: null,
   isLoggedIn: false,
 };
 
-const authFeature = createFeature({
-  name: 'auth',
+const loginAuthFeature = createFeature({
+  name: 'loginAuth',
   reducer: createReducer(
     initialState,
-    on(authActions.login, (state) => ({
+    on(loginAuthActions.login, (state) => ({
       ...state,
       isSubmitting: true,
       validationErrors: null,
     })),
-    on(authActions.loginSuccess, (state, action) => ({
+    on(loginAuthActions.loginSuccess, (state, action) => ({
       ...state,
       isSubmitting: false,
       user: action.loginresponse,
     })),
-    on(authActions.loginFailure, (state, action) => ({
+    on(loginAuthActions.loginFailure, (state, action) => ({
       ...state,
       isSubmitting: false,
       validationErrors: action.errors.errors,
@@ -32,10 +32,10 @@ const authFeature = createFeature({
 });
 
 export const {
-  name: authFeatureKey,
-  reducer: authReducer,
+  name: loginAuthFeatureKey,
+  reducer: loginReducer,
   selectIsSubmitting,
   selectUser,
   selectValidationErrors,
   selectIsLoggedIn,
-} = authFeature;
+} = loginAuthFeature;
