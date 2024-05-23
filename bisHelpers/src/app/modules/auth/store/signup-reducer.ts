@@ -1,5 +1,5 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { AuthSignupStateInterface } from '../interfaces/auth-signup-state';
+import { AuthSignupStateInterface } from '../interfaces/auth-signup-state.interface';
 import { signupAuthActions } from './signup-action';
 
 const initialState: AuthSignupStateInterface = {
