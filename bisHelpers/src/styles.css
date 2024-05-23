@@ -73,17 +73,29 @@
 .modified-password-primeng .p-inputtext {
   @apply rounded-lg bg-[#ECECEC] outline-none border-none focus:ring-0 lg:px-5 lg:py-4 p-2;
 }
+
 .p-button {
-  background-color:rgb(0 205 229 / var(--tw-bg-opacity));
-  border: 1px solid rgb(0 205 229 / var(--tw-bg-opacity)); 
+  background-color: rgb(0 205 229 / var(--tw-bg-opacity));
+  border: 1px solid rgb(0 205 229 / var(--tw-bg-opacity));
 }
-.p-calendar-w-btn .p-inputtext{
+
+.custom-calendar .p-calendar-w-btn .p-inputtext {
   background-color: rgb(236 236 236 / var(--tw-bg-opacity));
   width: 100%;
 }
-.p-dropdown .p-dropdown-trigger .p-icon{
+
+.custom-calendar .p-calendar {
+  width: 100%;
+}
+
+.custom-dropdown .p-dropdown .p-dropdown-trigger .p-icon {
   color: rgb(0 205 229 / var(--tw-bg-opacity));
 }
-.p-dropdown {
+.custom-dropdown .p-dropdown {
   background-color: rgb(236 236 236 / var(--tw-bg-opacity));
+  width: 100%;
+}
+
+.p-tooltip-text {
+  @apply text-xs;
 }

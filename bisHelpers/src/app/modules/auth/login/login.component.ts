@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { authActions } from '../store/login-action';
-import { LoginRequestInterface } from '../interfaces/login-request-interface';
+import { loginAuthActions } from '../store/login-action';
+import { LoginRequestInterface } from '../interfaces/login-request.interface';
 import {
   selectIsSubmitting,
   selectValidationErrors,
@@ -33,6 +33,6 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     const request: LoginRequestInterface = this.loginForm.value;
-    this.store.dispatch(authActions.login({ request }));
+    this.store.dispatch(loginAuthActions.login({ request }));
   }
 }
