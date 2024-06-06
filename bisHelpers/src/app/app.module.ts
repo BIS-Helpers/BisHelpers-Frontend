@@ -21,6 +21,7 @@ import {
   signupAuthFeatureKey,
   signupReducer,
 } from './modules/auth/store/signup-reducer';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,6 +31,7 @@ import {
     BrowserAnimationsModule,
     HttpClientModule,
     CoreModule,
+    RouterModule,
   ],
   providers: [
     provideStore(),

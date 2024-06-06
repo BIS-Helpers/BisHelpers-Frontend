@@ -26,7 +26,7 @@
             ></path>
           </svg>
         </button>
-        <a href="#" class="flex ms-2 md:me-24">
+        <a routerLink="/" class="flex ms-2 md:me-24">
           <img
             src="assets/images/logo.png"
             class="w-14 me-3"
@@ -73,15 +73,15 @@
             <ul class="py-1" role="none">
               <li>
                 <a
-                  routerLink="/dashboard/GpaAnalysis"
+                  routerLink="/dashboard/user-profile"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
-                  >Dashboard</a
+                  >Profile</a
                 >
               </li>
               <li>
                 <a
-                  href="#"
+                  routerLink="/dashboard/user-profile/settings"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
                   >Settings</a
@@ -104,7 +104,7 @@
     <ul class="space-y-2 font-medium">
       <li>
         <a
-          routerLink="/dashboard/GpaAnalysis"
+          routerLink="/dashboard/gpa-analysis"
           class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
         >
           <svg
@@ -214,7 +214,7 @@
           <span class="ms-3">Help</span>
         </a>
       </li>
-      <li>
+      <li (click)="logout()">
         <a
           class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group cursor-pointer"
         >

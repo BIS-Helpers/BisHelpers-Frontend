@@ -11,7 +11,6 @@ import { SignupComponent } from './signup/signup.component';
 import { PasswordModule } from 'primeng/password';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
-import { FormsModule } from '@angular/forms';
 import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
@@ -23,7 +22,6 @@ import { TooltipModule } from 'primeng/tooltip';
     PasswordModule,
     DropdownModule,
     CalendarModule,
-    FormsModule,
     TooltipModule,
   ],
   providers: [],

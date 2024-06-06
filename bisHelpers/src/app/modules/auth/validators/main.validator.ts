@@ -12,8 +12,8 @@ export class CustomizedValidators {
     return passwordStrengthValidator();
   }
 
-  static passwordMatch(): ValidatorFn {
-    return passwordMatchValidator();
+  static passwordMatch(password: string): ValidatorFn {
+    return passwordMatchValidator(password);
   }
 
   static getErrorMessage(control: AbstractControl): string | null {

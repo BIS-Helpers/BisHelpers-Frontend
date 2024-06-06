@@ -58,7 +58,7 @@ export class SignupComponent implements OnInit {
       ],
       confirmPassword: [
         '',
-        [Validators.required, CustomizedValidators.passwordMatch()],
+        [Validators.required, CustomizedValidators.passwordMatch('password')],
       ],
       dateOfJoin: ['', Validators.required],
       birthDate: ['', Validators.required],
