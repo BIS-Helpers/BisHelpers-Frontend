@@ -1,0 +1,253 @@
+<div class="p-4 sm:ml-64 mt-20">
+  <div
+    class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700"
+  >
+    <nav class="flex mb-4" aria-label="Breadcrumb">
+      <ol
+        class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse"
+      >
+        <li class="inline-flex items-center">
+          <a
+            routerLink="/dashboard"
+            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
+          >
+            <svg
+              class="w-3 h-3 me-2.5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"
+              />
+            </svg>
+            Home
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg
+              class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 6 10"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 9 4-4-4-4"
+              />
+            </svg>
+            <a
+              routerLink="/dashboard/user-profile"
+              class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white"
+              >User</a
+            >
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg
+              class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 6 10"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 9 4-4-4-4"
+              />
+            </svg>
+            <span
+              class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400"
+              >Settings</span
+            >
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <div
+      class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800"
+    >
+      <h3 class="mb-4 text-xl font-semibold dark:text-white">
+        General information
+      </h3>
+      <form
+        [formGroup]="generalInformation"
+        (ngSubmit)="onSubmit('generalInformation')"
+      >
+        <div *ngIf="generalInformationIsLoading">
+          <p-skeleton width="100%" height="12rem"></p-skeleton>
+        </div>
+        <div
+          *ngIf="!generalInformationIsLoading"
+          class="grid grid-cols-6 gap-6"
+        >
+          <div class="col-span-6 sm:col-span-3">
+            <label
+              for="fullName"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Full Name</label
+            >
+            <input
+              maxlength="30"
+              placeholder="John"
+              class="rounded-lg bg-[#ECECEC] outline-none border-none focus:ring-0 p-3 w-full"
+              type="text"
+              id="fullName"
+              formControlName="fullName"
+            />
+          </div>
+
+          <div class="col-span-6 sm:col-span-3">
+            <label
+              for="email"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Email</label
+            >
+            <input
+              placeholder="John@email.com "
+              class="rounded-lg bg-[#ECECEC] outline-none border-none focus:ring-0 p-3 w-full"
+              type="email"
+              id="email"
+              formControlName="email"
+            />
+          </div>
+          <div class="col-span-6 sm:col-span-3">
+            <label
+              for="phone-number"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Phone Number</label
+            >
+            <input
+              maxlength="11"
+              placeholder="(eg. 010XXXXXXXX)"
+              class="rounded-lg bg-[#ECECEC] outline-none border-none focus:ring-0 p-3 w-full"
+              type="text"
+              id="phoneNumber"
+              formControlName="phoneNumber"
+            />
+          </div>
+          <div class="col-span-6 sm:col-span-3">
+            <label
+              for="birthday"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Birth Date</label
+            >
+            <p-calendar
+              [showIcon]="true"
+              class="custom-calendar rounded-lg outline-none focus:ring-0 shadow-none"
+              placeholder="dd-mm-yyyy"
+              formControlName="birthDate"
+              dateFormat="dd-mm-yy"
+            ></p-calendar>
+          </div>
+          <div class="col-span-6 sm:col-full">
+            <button
+              class="py-4 px-5 flex items-center justify-center rounded-lg focus:outline-none bg-brand-500 text-white
+              {{
+                generalInformationIsSubmitting || generalInformation.invalid
+                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                  : 'bg-brand-500 text-white'
+              }}"
+              [disabled]="generalInformationIsSubmitting"
+            >
+              <span *ngIf="generalInformationIsSubmitting; else saveText">
+                <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i>
+              </span>
+              <ng-template #saveText> Save all </ng-template>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div
+      class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800"
+    >
+      <h3 class="mb-4 text-xl font-semibold dark:text-white">
+        Password information
+      </h3>
+      <form
+        [formGroup]="passwordInformation"
+        (ngSubmit)="onSubmit('passwordInformation')"
+      >
+        <div class="grid grid-cols-6 gap-6">
+          <div class="col-span-6 lg:col-span-3">
+            <label
+              for="current-password"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Current password</label
+            >
+            <p-password
+              placeholder="•••••••••"
+              class="modified-password-primeng"
+              id="password"
+              [toggleMask]="true"
+              [feedback]="false"
+              formControlName="oldPassword"
+            ></p-password>
+          </div>
+          <div class="flex flex-wrap justify-between col-span-6 gap-6">
+            <div class="grow">
+              <label
+                for="password"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >New password</label
+              >
+              <p-password
+                placeholder="•••••••••"
+                class="modified-password-primeng"
+                id="password"
+                [toggleMask]="true"
+                [feedback]="false"
+                formControlName="newPassword"
+              ></p-password>
+            </div>
+            <div class="grow">
+              <label
+                for="confirm-password"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Confirm password</label
+              >
+              <p-password
+                placeholder="•••••••••"
+                class="modified-password-primeng"
+                id="confirm-password"
+                [toggleMask]="true"
+                [feedback]="false"
+                formControlName="confirmPassword"
+              ></p-password>
+            </div>
+          </div>
+          <div class="col-span-6 sm:col-full">
+            <button
+              class="py-4 px-5 flex items-center justify-center rounded-lg focus:outline-none bg-brand-500 text-white
+              {{
+                passwordInformationIsSubmitting || passwordInformation.invalid && !passwordInformation.get('newPassword')?.errors?.['passwordStrength']
+                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                  : 'bg-brand-500 text-white'
+              }}"
+              [disabled]="passwordInformationIsSubmitting"
+            >
+              <span *ngIf="passwordInformationIsSubmitting; else saveText">
+                <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i>
+              </span>
+              <ng-template #saveText> Save all </ng-template>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <p-toast></p-toast>
+  </div>
+</div>

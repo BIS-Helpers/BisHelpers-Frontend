@@ -1,25 +1,53 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from './components/layout/layout.component';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
-import { GpaAnalysisComponent } from './components/gpa-analysis/gpa-analysis.component';
+import { DashboardComponent } from './dashboard.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LayoutComponent,
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
     children: [
       {
-        path: 'GpaAnalysis',
-        component: GpaAnalysisComponent,
+        path: 'gpa-analysis',
+        loadChildren: () =>
+          import('./modules/gpa-analysis/gpa-analysis.module').then(
+            (m) => m.GpaAnalysisModule
+          ),
+      },
+      {
+        path: 'user-profile',
+        loadChildren: () =>
+          import('./modules/user-profile/user-profile.module').then(
+            (m) => m.UserProfileModule
+          ),
+      },
+      {
+        path: 'bis-family-plus',
+        loadChildren: () =>
+          import('./modules/bis-family-plus/bis-family-plus.module').then(
+            (m) => m.BisFamilyPlusModule
+          ),
+      },
+      {
+        path: 'weekly-updates',
+        loadChildren: () =>
+          import('./modules/weekly-updates/weekly-updates.module').then(
+            (m) => m.WeeklyUpdatesModule
+          ),
+      },
+      {
+        path: '',
+        loadChildren: () =>
+          import('./modules/main/main.module').then((m) => m.MainModule),
       },
     ],
-
-    canActivate: [AuthGuard],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
 export class DashboardRoutingModule {}

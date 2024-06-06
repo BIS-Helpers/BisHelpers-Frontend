@@ -23,7 +23,7 @@ export class AuthGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     const token = this.localStorageService.getItem('accessToken');
     if (!token) {
-      this.router.navigateByUrl('/auth/login');
+      this.authService.logout();
       return of(false);
     }
 
@@ -32,12 +32,12 @@ export class AuthGuard implements CanActivate {
         if (isValid) {
           return true;
         } else {
-          this.router.navigateByUrl('/auth/login');
+          this.authService.logout();
           return false;
         }
       }),
       catchError(() => {
-        this.router.navigateByUrl('/auth/login');
+        this.authService.logout();
         return of(false);
       })
     );

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginRequestInterface } from '../interfaces/login-request.interface';
 import { environment } from 'src/environments/environment.development';
-import { Observable, catchError, map, of, tap } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { LoginResponseInterface } from '../interfaces/login-response.interface';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
@@ -28,10 +28,7 @@ export class AuthService {
   }
 
   register(data: SignupRequestInterface): Observable<any> {
-    return this.http.post(
-      `${this.API_BASE_URL}/register`,
-      data
-    );
+    return this.http.post(`${this.API_BASE_URL}/register`, data);
   }
 
   validateToken(token: string): Observable<boolean> {
@@ -49,22 +46,8 @@ export class AuthService {
       );
   }
 
-  refreshToken(): Observable<any> {
-    return this.http
-      .post<any>(
-        `${this.API_BASE_URL}/refreshToken`,
-        {},
-        { withCredentials: true }
-      )
-      .pipe(
-        tap((response) => {
-          this.localStorageService.setItem('accessToken', response.token);
-        })
-      );
-  }
-
-  logout() {
-    localStorage.removeItem('token');
+  logout(): void {
+    this.localStorageService.clear();
     this.router.navigate(['/auth/login']);
   }
 }
