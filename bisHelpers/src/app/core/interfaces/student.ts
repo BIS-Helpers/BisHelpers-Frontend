@@ -6,4 +6,6 @@ export interface Student {
   birthDate: string;
   level: string;
   collegeId: string;
+  gpa: number;
+  totalEarnedHours: number;
 }

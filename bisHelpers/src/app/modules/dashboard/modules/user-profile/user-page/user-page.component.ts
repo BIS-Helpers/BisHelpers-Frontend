@@ -9,6 +9,7 @@ import { Student } from 'src/app/core/interfaces/student';
 })
 export class UserPageComponent implements OnInit {
   constructor(private userService: UserService) {}
+  user$ = this.userService.getUser();
   user!: Student;
 
   ngOnInit() {
