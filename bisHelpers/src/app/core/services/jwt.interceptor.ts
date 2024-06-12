@@ -10,7 +10,6 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/modules/auth/services/auth.service';
-import { Router } from '@angular/router';
 import { LocalStorageService } from '../../core/services/local-storage.service';
 import { TokenService } from '../../core/services/token.service';
 
@@ -20,7 +19,6 @@ export class JwtInterceptor implements HttpInterceptor {
 
   constructor(
     private authService: AuthService,
-    private router: Router,
     private localStorageService: LocalStorageService,
     private tokenService: TokenService
   ) {

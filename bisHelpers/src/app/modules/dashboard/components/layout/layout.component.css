@@ -1,0 +1,5 @@
+.disabled-link {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}

@@ -102,10 +102,11 @@
 >
   <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
     <ul class="space-y-2 font-medium">
-      <li>
+      <li [ngClass]="{ 'disabled-link': !IsAllowed }">
         <a
           routerLink="/dashboard/gpa-analysis"
-          class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+          class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group"
+          [ngClass]="{ 'hover:bg-gray-100 dark:hover:bg-gray-700': IsAllowed }"
         >
           <svg
             class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -122,12 +123,14 @@
             />
           </svg>
           <span class="ms-3">Gpa Analysis</span>
+          <i *ngIf="!IsAllowed" class="ms-3 pi pi-lock"></i>
         </a>
       </li>
-      <li>
+      <li [ngClass]="{ 'disabled-link': !IsAllowed }">
         <a
           href="#"
-          class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+          class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group"
+          [ngClass]="{ 'hover:bg-gray-100 dark:hover:bg-gray-700': IsAllowed }"
         >
           <svg
             class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -145,12 +148,13 @@
             />
           </svg>
 
-          <span class="flex-1 ms-3 whitespace-nowrap">Bis Family Plus</span>
+          <span class="ms-3">Bis Family Plus</span>
+          <i *ngIf="!IsAllowed" class="ms-3 pi pi-lock"></i>
         </a>
       </li>
-      <li>
+      <li *ngIf="!IsAllowed">
         <a
-          href="#"
+          routerLink="/dashboard/registered-courses/"
           class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
         >
           <svg
@@ -164,12 +168,40 @@
           >
             <path
               fill-rule="evenodd"
-              d="M5 5a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1 2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a2 2 0 0 1 2-2ZM3 19v-7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Zm6.01-6a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm-10 4a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"
+              d="M6 2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 1 0 0-2h-2v-2h2a1 1 0 0 0 1-1V4a2 2 0 0 0-2-2h-8v16h5v2H7a1 1 0 1 1 0-2h1V2H6Z"
               clip-rule="evenodd"
             />
           </svg>
 
-          <span class="flex-1 ms-3 whitespace-nowrap">Weekly Updates</span>
+          <span class="flex-1 ms-3 whitespace-nowrap">
+            Registered Courses
+          </span>
+        </a>
+      </li>
+
+      <li>
+        <a
+          routerLink="/dashboard/user-profile/profile"
+          routerLinkActive=""
+          class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+        >
+          <svg
+            class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+
+          <span class="flex-1 ms-3 whitespace-nowrap">Profile</span>
         </a>
       </li>
     </ul>

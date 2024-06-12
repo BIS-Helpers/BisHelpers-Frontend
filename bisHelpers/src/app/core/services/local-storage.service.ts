@@ -7,17 +7,30 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class LocalStorageService {
   private userSubject: BehaviorSubject<any>;
   user$: Observable<any>;
+  private userAllowedSubject: BehaviorSubject<boolean>;
+  IsAllowed$: Observable<boolean>;
 
   constructor() {
     // Initialize userSubject with current user from local storage
     this.userSubject = new BehaviorSubject<any>(this.getItem('user'));
     this.user$ = this.userSubject.asObservable();
+
+    // Initialize IsAllowedSubject with current IsAllowed from local storage
+    this.userAllowedSubject = new BehaviorSubject<boolean>(
+      this.getItem('IsAllowed')
+    );
+    this.IsAllowed$ = this.userAllowedSubject.asObservable();
   }
 
-  setItem(key: string, data: unknown): void {
+  setItem(key: string, data: any): void {
     try {
       localStorage.setItem(key, JSON.stringify(data));
-      this.userSubject.next(data);
+      if (key === 'user') {
+        this.userSubject.next(data);
+      }
+      if (key === 'IsAllowed') {
+        this.userAllowedSubject.next(data);
+      }
     } catch (error) {
       console.error('Error saving to localStorage', error);
     }

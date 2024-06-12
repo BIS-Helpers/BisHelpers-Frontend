@@ -1,3 +1,6 @@
+import { AcademicCourses } from 'src/app/modules/dashboard/modules/interfaces/academic-courses';
+import { Professor } from 'src/app/modules/dashboard/modules/interfaces/professor';
+
 export interface Student {
   fullName: string;
   email: string;
@@ -8,4 +11,14 @@ export interface Student {
   collegeId: string;
   gpa: number;
   totalEarnedHours: number;
+  registeredAcademicLectures: StudentRegisteredCourses[];
+}
+
+export interface StudentRegisteredCourses {
+  academicCourse: AcademicCourses;
+  day: string;
+  groupNumber: string;
+  id: number;
+  professor: Professor;
+  startTime: string;
 }
