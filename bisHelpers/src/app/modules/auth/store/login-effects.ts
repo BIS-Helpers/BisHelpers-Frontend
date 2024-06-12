@@ -20,6 +20,15 @@ export const loginEffects = createEffect(
         return authService.login(request).pipe(
           map((loginresponse: LoginResponseInterface) => {
             localStorageService.setItem('accessToken', loginresponse.token);
+            localStorageService.setItem('role', loginresponse.roles);
+            localStorageService.setItem('academicYearAndSemester', [
+              loginresponse.academicYear,
+              loginresponse.academicSemester,
+            ]);
+            localStorageService.setItem(
+              'IsAllowed',
+              loginresponse.hasActiveRegistration
+            );
             localStorageService.setItem('user', loginresponse);
             return loginAuthActions.loginSuccess({ loginresponse });
           }),

@@ -74,10 +74,10 @@
   @apply rounded-lg bg-[#ECECEC] outline-none border-none focus:ring-0 lg:px-5 lg:py-4 p-2;
 }
 
-.p-button {
+/* .p-button {
   background-color: rgb(0 205 229 / var(--tw-bg-opacity));
   border: 1px solid rgb(0 205 229 / var(--tw-bg-opacity));
-}
+} */
 
 .custom-calendar .p-calendar-w-btn .p-inputtext {
   background-color: rgb(236 236 236 / var(--tw-bg-opacity));
@@ -98,4 +98,13 @@
 
 .p-tooltip-text {
   @apply text-xs;
+}
+
+.delete {
+  color: #ffffff;
+  background: #ff4d4f;
+}
+
+.video-dialog .p-dialog-content {
+  @apply flex items-center justify-center;
 }

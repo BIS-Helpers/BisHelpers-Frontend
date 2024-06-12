@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
 import { DashboardComponent } from './dashboard.component';
+import { AcademicRegisterationGuard } from 'src/app/core/guards/academic-registeration.guard';
+import { RegisteredCoursesGuard } from 'src/app/core/guards/registered-courses.guard';
 
 const routes: Routes = [
   {
@@ -15,6 +17,7 @@ const routes: Routes = [
           import('./modules/gpa-analysis/gpa-analysis.module').then(
             (m) => m.GpaAnalysisModule
           ),
+        canActivate: [AcademicRegisterationGuard],
       },
       {
         path: 'user-profile',
@@ -29,6 +32,7 @@ const routes: Routes = [
           import('./modules/bis-family-plus/bis-family-plus.module').then(
             (m) => m.BisFamilyPlusModule
           ),
+        canActivate: [AcademicRegisterationGuard],
       },
       {
         path: 'weekly-updates',
@@ -36,6 +40,14 @@ const routes: Routes = [
           import('./modules/weekly-updates/weekly-updates.module').then(
             (m) => m.WeeklyUpdatesModule
           ),
+      },
+      {
+        path: 'registered-courses',
+        loadChildren: () =>
+          import('./modules/registered-courses/registered-courses.module').then(
+            (m) => m.RegisteredCoursesModule
+          ),
+        canActivate: [RegisteredCoursesGuard],
       },
       {
         path: '',

@@ -1,0 +1,50 @@
+<div class="card">
+  <p-table
+    *ngIf="AcademicLectures.length; else no_content"
+    [columns]="cols"
+    [value]="AcademicLectures"
+    [tableStyle]="{ 'min-width': '50rem' }"
+  >
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns">
+          {{ col.header }}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns">
+          {{
+            col.field.includes('.')
+              ? getNestedProperty(rowData, col.field)
+              : rowData[col.field]
+          }}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <ng-template #no_content>
+    <div class="relative overflow-x-auto">
+      <table class="w-full text-center rtl:text-right text-gray-500">
+        <thead class="text-gray-700 uppercase bg-gray-50">
+          <tr>
+            <th scope="col" class="px-6 py-3">No Courses Found</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bg-white border-b">
+            <td class="px-6 py-4">
+              <a
+                class="btn-primary cursor-pointer"
+                routerLink="/dashboard/registered-courses"
+              >
+                Please insert your academic courses
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-template>
+</div>

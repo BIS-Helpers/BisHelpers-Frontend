@@ -16,11 +16,16 @@ import {
 import { provideEffects } from '@ngrx/effects';
 import * as loginEffects from 'src/app/modules/auth/store/login-effects';
 import * as signupEffects from 'src/app/modules/auth/store/signup-effects';
+import * as academicRegisterEffects from 'src/app/modules/dashboard/modules/registered-courses/store/registered-effect';
 import { CoreModule } from './core/core.module';
 import {
   signupAuthFeatureKey,
   signupReducer,
 } from './modules/auth/store/signup-reducer';
+import {
+  academicRegisterFeatureKey,
+  academicRegisterReducer,
+} from './modules/dashboard/modules/registered-courses/store/registered-reduecer';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -44,7 +49,8 @@ import { RouterModule } from '@angular/router';
     }),
     provideState(loginAuthFeatureKey, loginReducer),
     provideState(signupAuthFeatureKey, signupReducer),
-    provideEffects(loginEffects, signupEffects),
+    provideState(academicRegisterFeatureKey, academicRegisterReducer),
+    provideEffects(loginEffects, signupEffects, academicRegisterEffects),
   ],
   bootstrap: [AppComponent],
 })

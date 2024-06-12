@@ -6,4 +6,7 @@ export interface LoginResponseInterface {
   token: string;
   expiresOn: string;
   refreshTokenExpiration: string;
+  academicYear?: string;
+  academicSemester?: string;
+  hasActiveRegistration?: boolean | null;
 }

@@ -1,0 +1,60 @@
+.prog {
+  width: 100%;
+  background: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  height: 15px;
+}
+
+.progress-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-wrap: nowrap; /*Made by Yousef Ahmed*/
+  height: 100%;
+  background: #3b82f6;
+  position: relative;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  width: 0;
+  animation: progress-animation 2s forwards;
+}
+
+.progress-bar::before {
+  content: attr(data-progress);
+  position: absolute;
+  background-color: black;
+  color: white;
+  top: -40px;
+  right: -18px;
+  padding: 4px 0;
+  width: 40px;
+  text-align: center;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, top 0.5s ease-in-out;
+}
+
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 8px;
+  border-color: black transparent transparent transparent;
+  right: -8px;
+  top: -15px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, top 0.5s ease-in-out;
+}
+
+
+@keyframes progress-animation {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--progress);
+  }
+}

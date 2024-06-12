@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { Student } from 'src/app/core/interfaces/student';
+import {
+  Student,
+  StudentRegisteredCourses,
+} from 'src/app/core/interfaces/student';
 
 @Component({
   selector: 'app-user-page',
@@ -10,13 +13,13 @@ import { Student } from 'src/app/core/interfaces/student';
 export class UserPageComponent implements OnInit {
   constructor(private userService: UserService) {}
   user$ = this.userService.getUser();
+  courses: StudentRegisteredCourses[] = [];
   user!: Student;
 
   ngOnInit() {
-    this.userService.getUser().subscribe((user) => {
-      if (user) {
-        this.user = user;
-      }
+    this.user$.subscribe((user) => {
+      this.courses = user.registeredAcademicLectures;
+      console.log(this.courses);
     });
   }
 }
