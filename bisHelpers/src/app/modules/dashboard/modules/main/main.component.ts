@@ -11,6 +11,7 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 export class MainComponent implements OnInit {
   user$ = this.userService.getUser();
   user!: Student;
+
   constructor(
     private userService: UserService,
     private localStorageService: LocalStorageService
@@ -24,5 +25,4 @@ export class MainComponent implements OnInit {
       console.log(this.user);
     });
   }
-
 }

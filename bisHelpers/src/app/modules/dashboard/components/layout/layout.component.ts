@@ -7,7 +7,6 @@ import {
 } from 'src/app/core/interfaces/student';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { AuthService } from 'src/app/modules/auth/services/auth.service';
-import { UserService } from '../../modules/services/user.service';
 
 @Component({
   selector: 'app-layout',
@@ -26,7 +25,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
   constructor(
     private localStorageService: LocalStorageService,
-    private userService: UserService,
     private authService: AuthService
   ) {
     this.user = this.localStorageService.getItem('user');
@@ -43,18 +41,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
     this.localStorageIsAllowedSub =
       this.localStorageService.IsAllowed$.subscribe((isAllowed) => {
         this.IsAllowed = isAllowed;
-        console.log(this.IsAllowed);
       });
-
-    // this.gpa = this.user.gpa;
-    // this.totalEarnedHours = this.user.totalEarnedHours;
-    // this.registeredAcademicLectures = this.user.registeredAcademicLectures;
-
-    // console.log(
-    //   this.gpa,
-    //   this.totalEarnedHours,
-    //   this.registeredAcademicLectures
-    // );
 
     initFlowbite();
   }
