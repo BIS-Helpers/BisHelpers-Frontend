@@ -50,219 +50,151 @@
         </li>
       </ol>
     </nav>
-    <div
-      class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800"
-    >
-      <p class="text-2xl text-gray-400 dark:text-gray-500">
-        <svg
-          class="w-3.5 h-3.5"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 18 18"
+
+    <div class="flex justify-end items-center my-2.5">
+      <div class="flex items-center">
+        <span
+          *ngIf="gpaReport; else id_loading_content"
+          class="pr-5 font-bold text-lg"
+          >{{ gpaReport.collegeId }}</span
         >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M9 1v16M1 9h16"
+        <div class="relative p-7 bg-blue-900 rounded-lg"></div>
+      </div>
+    </div>
+    <ng-template #id_loading_content>
+      <p-skeleton width="10rem" height="2rem"></p-skeleton>
+    </ng-template>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-4">
+      <ng-container *ngIf="gpaReport; else loading_content">
+        <app-report
+          [gpaReport]="gpaReport"
+          [stimulatedGPA]="GPAStimulation"
+        ></app-report>
+      </ng-container>
+      <ng-template #loading_content>
+        <p-skeleton width="100%" height="20rem"></p-skeleton>
+      </ng-template>
+      <div
+        *ngIf="gpaReport; else loading_content"
+        class="flex justify-between bg-white border border-gray-200 rounded-lg shadow p-3.5 flex-wrap-reverse"
+      >
+        <div>
+          <div
+            class="flex gap-2.5 items-center border-b border-black w-full pb-1"
+          >
+            <img src="assets/images/Academic.svg" />
+            <p class="text-paragraph-md md:text-paragraph-lg">
+              Academic Information
+            </p>
+          </div>
+          <div class="flex flex-col gap-2 mt-2">
+            <div class="flex gap-1.5 items-center">
+              <img src="assets/images/level.svg" />
+              <p class="text-paragraph-sm text-default-50 font-semibold">
+                Level:
+              </p>
+              <span class="text-paragraph-sm text-black">{{
+                gpaReport.level
+              }}</span>
+            </div>
+            <div class="flex gap-1.5 items-center">
+              <img src="assets/images/gpa.svg" />
+              <p class="text-paragraph-sm text-default-50 font-semibold">
+                GPA:
+              </p>
+              <span class="text-paragraph-sm text-black"
+                >{{ gpaReport.gpa ? gpaReport.gpa : 'N/A' }} / 4</span
+              >
+            </div>
+            <div class="flex gap-1.5 items-center">
+              <img src="assets/images/grade.svg" />
+              <p class="text-paragraph-sm text-default-50 font-semibold">
+                Grade:
+              </p>
+              <span class="text-paragraph-sm text-black"> {{ Grade }}</span>
+            </div>
+            <div class="flex gap-1.5 items-center">
+              <img src="assets/images/clock.svg" />
+              <p class="text-paragraph-sm text-default-50 font-semibold">
+                Total Earned Hours:
+              </p>
+              <span class="text-paragraph-sm text-black"
+                >{{ gpaReport.totalEarnedHours }} /
+                {{ gpaReport.totalCurrentHours }} Hours</span
+              >
+            </div>
+            <div class="flex gap-1.5 items-center">
+              <img src="assets/images/points.svg" />
+              <p class="text-paragraph-sm text-default-50 font-semibold">
+                Total Earned Points:
+              </p>
+              <span class="text-paragraph-sm text-black"
+                >{{ gpaReport.totalEarnedPoints | number : '1.2-2' }} /
+                {{ gpaReport.totalPoints | number : '1.2-2' }} points</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="hidden lg:flex lg:flex-col justify-between mb-5">
+          <img
+            class="w-[100px] self-start"
+            src="assets/images/bis-logo-report.svg"
+            alt=""
           />
-        </svg>
-      </p>
+          <p-button
+            (click)="showDialog()"
+            icon="pi pi-external-link"
+            label="Info"
+          ></p-button>
+        </div>
+      </div>
+      <p-dialog
+        header="Information"
+        [(visible)]="visible"
+        [style]="{ width: '50vw' }"
+      >
+        <app-grades-degrees-points-table></app-grades-degrees-points-table>
+      </p-dialog>
     </div>
-    <div class="grid grid-cols-2 gap-4 mb-4">
-      <div
-        class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800"
-      >
-        <p class="text-2xl text-gray-400 dark:text-gray-500">
-          <svg
-            class="w-3.5 h-3.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 18"
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="mb-4" *ngIf="AcademicLectures; else loading_content">
+        <p-table [value]="AcademicLectures">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Course Name</th>
+              <th>Credit Hours</th>
+              <th>Professor Name</th>
+              <th>Stimulated GPA</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-lecture let-i="rowIndex">
+            <tr [formGroup]="getLectureFormGroup(i)">
+              <td>{{ lecture.academicCourse.name }}</td>
+              <td>{{ lecture.academicCourse.creditHours }} Hours</td>
+              <td>{{ lecture.professor.fullName }}</td>
+              <td>
+                <p-dropdown
+                  formControlName="selectedGrade"
+                  [options]="grades"
+                  optionLabel="grade"
+                  placeholder="Select a Grade"
+                  appendTo="body"
+                ></p-dropdown>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+        <div class="flex justify-end">
+          <button
+            class="py-3 px-5 gap-2 flex items-center justify-center rounded-lg focus:outline-none bg-brand-500 text-white m-4 font-bold"
+            type="submit"
           >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 1v16M1 9h16"
-            />
-          </svg>
-        </p>
+            <i class="pi pi-check"></i>
+            Stimulate GPA
+          </button>
+        </div>
       </div>
-      <div
-        class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800"
-      >
-        <p class="text-2xl text-gray-400 dark:text-gray-500">
-          <svg
-            class="w-3.5 h-3.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 18"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 1v16M1 9h16"
-            />
-          </svg>
-        </p>
-      </div>
-      <div
-        class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800"
-      >
-        <p class="text-2xl text-gray-400 dark:text-gray-500">
-          <svg
-            class="w-3.5 h-3.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 18"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 1v16M1 9h16"
-            />
-          </svg>
-        </p>
-      </div>
-      <div
-        class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800"
-      >
-        <p class="text-2xl text-gray-400 dark:text-gray-500">
-          <svg
-            class="w-3.5 h-3.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 18"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 1v16M1 9h16"
-            />
-          </svg>
-        </p>
-      </div>
-    </div>
-    <div
-      class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800"
-    >
-      <p class="text-2xl text-gray-400 dark:text-gray-500">
-        <svg
-          class="w-3.5 h-3.5"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 18 18"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M9 1v16M1 9h16"
-          />
-        </svg>
-      </p>
-    </div>
-    <div class="grid grid-cols-2 gap-4">
-      <div
-        class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800"
-      >
-        <p class="text-2xl text-gray-400 dark:text-gray-500">
-          <svg
-            class="w-3.5 h-3.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 18"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 1v16M1 9h16"
-            />
-          </svg>
-        </p>
-      </div>
-      <div
-        class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800"
-      >
-        <p class="text-2xl text-gray-400 dark:text-gray-500">
-          <svg
-            class="w-3.5 h-3.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 18"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 1v16M1 9h16"
-            />
-          </svg>
-        </p>
-      </div>
-      <div
-        class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800"
-      >
-        <p class="text-2xl text-gray-400 dark:text-gray-500">
-          <svg
-            class="w-3.5 h-3.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 18"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 1v16M1 9h16"
-            />
-          </svg>
-        </p>
-      </div>
-      <div
-        class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800"
-      >
-        <p class="text-2xl text-gray-400 dark:text-gray-500">
-          <svg
-            class="w-3.5 h-3.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 18"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 1v16M1 9h16"
-            />
-          </svg>
-        </p>
-      </div>
-    </div>
+    </form>
   </div>
 </div>

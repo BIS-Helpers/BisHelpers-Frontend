@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { environment } from 'src/environments/environment.development';
+import { GpaReport } from '../interfaces/gpa-report';
 
 @Injectable({
   providedIn: 'root',
@@ -24,5 +25,7 @@ export class GpaService {
     );
   }
 
-
+  getGpaAnalysis(): Observable<GpaReport> {
+    return this.http.get<GpaReport>(`${this.API_BASE_URL}/GpaAnalysis`);
+  }
 }

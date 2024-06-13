@@ -1,0 +1,65 @@
+<div class="flex w-full">
+  <div class="table">
+    <table>
+      <thead>
+        <tr>
+          <th
+            *ngFor="let col of gradeCols"
+            [ngClass]="{
+              raduisleft: col.field === 'grade',
+              raduisright: col.field === 'points'
+            }"
+          >
+            {{ col.header }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let grade of grades">
+          <td
+            *ngFor="let col of gradeCols"
+            [ngClass]="{
+              raduisleft: col.field === 'grade' && grade.grade === 'F',
+              raduisright: col.field === 'points' && grade.grade === 'F'
+            }"
+          >
+            {{ grade[col.field] }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table">
+    <table>
+      <thead>
+        <tr>
+          <th
+            *ngFor="let col of categoryCols"
+            [ngClass]="{
+              raduisleft: col.field === 'rating',
+              raduisright: col.field === 'points'
+            }"
+          >
+            {{ col.header }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories">
+          <td
+            *ngFor="let col of categoryCols"
+            [ngClass]="{
+              raduisleft:
+                col.field === 'rating' && category.rating === 'Very Poor',
+              raduisright:
+                col.field === 'points' && category.rating === 'Very Poor'
+            }"
+          >
+            {{ category[col.field] }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

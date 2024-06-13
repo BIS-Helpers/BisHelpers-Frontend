@@ -22,8 +22,7 @@ export const loginEffects = createEffect(
             localStorageService.setItem('accessToken', loginresponse.token);
             localStorageService.setItem('role', loginresponse.roles);
             localStorageService.setItem('academicYearAndSemester', [
-              loginresponse.academicYear,
-              loginresponse.academicSemester,
+              `(${loginresponse.academicYear}) ${loginresponse.academicSemester}`,
             ]);
             localStorageService.setItem(
               'IsAllowed',
