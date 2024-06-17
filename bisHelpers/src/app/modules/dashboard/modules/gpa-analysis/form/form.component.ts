@@ -111,6 +111,8 @@ export class FormComponent implements OnInit {
         creditHours: creditHours,
       };
     });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     this.calculateStimulatedGPA(rowDataWithPoints);
     console.log('Row Data with Points and Credit Hours:', rowDataWithPoints);
   }
