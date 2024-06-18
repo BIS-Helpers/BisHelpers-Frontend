@@ -33,13 +33,6 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'weekly-updates',
-        loadChildren: () =>
-          import('./modules/weekly-updates/weekly-updates.module').then(
-            (m) => m.WeeklyUpdatesModule
-          ),
-      },
-      {
         path: 'registered-courses',
         loadChildren: () =>
           import('./modules/registered-courses/registered-courses.module').then(
