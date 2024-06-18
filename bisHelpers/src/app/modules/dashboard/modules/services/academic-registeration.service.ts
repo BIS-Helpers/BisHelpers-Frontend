@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { environment } from 'src/environments/environment.development';
 import { AcademicCourses } from '../interfaces/academic-courses';
 import { Observable } from 'rxjs';
@@ -11,11 +9,7 @@ import { Professor } from '../interfaces/professor';
   providedIn: 'root',
 })
 export class AcademicRegisterationService {
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-    private localStorageService: LocalStorageService
-  ) {}
+  constructor(private http: HttpClient) {}
 
   private API_BASE_URL = environment.API_BASE_URL + '/AcademicCourse';
 
