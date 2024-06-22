@@ -61,14 +61,14 @@ export class CarouselComponent implements OnInit {
       github: 'https://github.com/ZiadEhab15',
     },
     {
-      name: 'Mego',
+      name: 'Ahmed abdelmeged',
       track: 'Business Analyst',
       imgUrl: 'assets/images/member-6.jpg',
       linkedin: 'https://www.linkedin.com/in/ahmed-abdelmeged-86324b240/',
       twitter: '',
     },
     {
-      name: 'Hefo',
+      name: 'Abdelrahman hefnawi',
       track: 'Business Analyst',
       imgUrl: 'assets/images/member-4.jpg',
       linkedin: 'https://www.linkedin.com/in/abdulrahman-al-hefnawi-4022b21b6/',
