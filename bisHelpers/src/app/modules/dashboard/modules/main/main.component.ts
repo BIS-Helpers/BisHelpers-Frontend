@@ -84,7 +84,10 @@ export class MainComponent implements OnInit {
       labels: ['Total Completed Hours', 'Total Hours'],
       datasets: [
         {
-          data: [this.totalEarnedHours, this.totalHours],
+          data: [
+            this.totalEarnedHours,
+            this.totalHours - this.totalEarnedHours,
+          ],
           backgroundColor: [
             'rgba(75, 192, 192, 0.2)',
             'rgb(142, 142, 142, 0.2)',
