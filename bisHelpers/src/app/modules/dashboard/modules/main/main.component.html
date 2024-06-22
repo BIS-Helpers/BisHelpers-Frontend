@@ -27,113 +27,166 @@
         </li>
       </ol>
     </nav>
-    <div class="flex justify-center items-center"></div>
-
-    <div
-      class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800"
-    >
-      <p class="text-2xl text-gray-400 dark:text-gray-500">
-        <svg
-          class="w-3.5 h-3.5"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 18 18"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M9 1v16M1 9h16"
-          />
-        </svg>
-      </p>
+    <div class="py-4">
+      <app-clock></app-clock>
     </div>
-    <div class="grid grid-cols-2 gap-4">
-      <div
-        class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800"
-      >
-        <p class="text-2xl text-gray-400 dark:text-gray-500">
-          <svg
-            class="w-3.5 h-3.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 18"
+    <div class="" *ngIf="gpaReport">
+      <ng-template #loading_content>
+        <p-skeleton class="w-full" width="100%" height="12rem"></p-skeleton>
+      </ng-template>
+      <div *ngIf="!isLoading; else loading_content" class="col-span-12 py-4">
+        <div class="w-full max-w-6xl">
+          <div
+            class="lg:flex-row flex flex-col justify-between lg:items-center mb-4"
           >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 1v16M1 9h16"
+            <h2 class="text-heading-md font-semibold text-gray-900">
+              Early Posts
+            </h2>
+            <input
+              type="text"
+              pInputText
+              [(ngModel)]="searchText"
+              (input)="filterPosts()"
+              placeholder="Search  by title or content..."
+              class="p-2 border border-gray-300 rounded-lg"
             />
-          </svg>
-        </p>
+          </div>
+          <article
+            class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 w-full mb-5"
+            *ngFor="let post of paginatedPosts; let i = index"
+          >
+            <footer
+              class="lg:flex-row flex flex-col gap-2 items-center justify-center lg:justify-between mb-2"
+            >
+              <div class="lg:flex-row flex flex-col gap-2 items-center">
+                <p
+                  class="inline-flex items-center mr-3 text-sm font-semibold text-gray-900"
+                >
+                  <span
+                    class="relative inline-flex items-center justify-center w-14 h-14 overflow-hidden bg-gray-100 rounded-full"
+                  >
+                    <span class="font-medium text-gray-600 text-paragraph-lg">
+                      {{
+                        post.academicLecture
+                          ? post.academicLecture.academicCourse.name.substring(
+                              0,
+                              2
+                            )
+                          : 'BF'
+                      }}
+                    </span>
+                  </span>
+                </p>
+                <p
+                  class="text-sm text-gray-600 flex flex-col max-md:items-center gap-3"
+                >
+                  <span class="flex items-center">
+                    <span
+                      class="font-semibold text-gray-900 text-paragraph-lg"
+                      >{{ post.academicLecture?.academicCourse?.name }}</span
+                    >
+                    <span
+                      class="text-xs text-gray-600 ms-2"
+                      *ngIf="post.lastUpdatedOn"
+                      >(edited)</span
+                    >
+                  </span>
+                  <span
+                    *ngIf="
+                      post.academicLecture && post.academicLecture.professor
+                    "
+                    class="text-paragraph-sm font-semibold text-gray-600"
+                  >
+                    {{ post.academicLecture.professor.fullName }}, G{{
+                      post.academicLecture.groupNumber
+                    }}, {{ post.academicLecture.day }},
+                    {{ formatTime(post.academicLecture.startTime) }}
+                  </span>
+                </p>
+              </div>
+              <p class="lg:self-start self-end">
+                <p-tag
+                  [style]="{
+                    backgroundColor: '#bcfc7e',
+                    color: '#2d862d'
+                  }"
+                  class="text-nowrap"
+                  value="{{ getTimeDifference(post.createdOn) }}"
+                  [rounded]="true"
+                ></p-tag>
+              </p>
+            </footer>
+            <div class="space-y-2" dir="rtl">
+              <p
+                class="mb-2 text-paragraph-lg font-bold text-gray-900 font-arabic"
+              >
+                {{ post.title }}
+              </p>
+              <p class="mb-2 text-gray-900 font-arabic">{{ post.content }}</p>
+            </div>
+            <p class="text-paragraph-sm mt-5">
+              {{ post.createdOn | date : 'dd/MM/yyyy hh:mm a' }}
+            </p>
+          </article>
+          <p-paginator
+            (onPageChange)="onPageChange($event)"
+            [first]="first"
+            [rows]="rows"
+            [totalRecords]="totalRecords"
+            [rowsPerPageOptions]="[3, 7, 10]"
+          ></p-paginator>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 max-md:grid-cols-1 gap-5">
+      <div
+        class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 w-full mb-5"
+      >
+        <p-chart
+          *ngIf="gpaReport; else redirectionContent"
+          type="doughnut"
+          [data]="hoursData"
+          [options]="hoursOptions"
+        ></p-chart>
       </div>
       <div
-        class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800"
+        class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 w-full mb-5"
       >
-        <p class="text-2xl text-gray-400 dark:text-gray-500">
-          <svg
-            class="w-3.5 h-3.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 18"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 1v16M1 9h16"
-            />
-          </svg>
-        </p>
-      </div>
-      <div
-        class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800"
-      >
-        <p class="text-2xl text-gray-400 dark:text-gray-500">
-          <svg
-            class="w-3.5 h-3.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 18"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 1v16M1 9h16"
-            />
-          </svg>
-        </p>
-      </div>
-      <div
-        class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800"
-      >
-        <p class="text-2xl text-gray-400 dark:text-gray-500">
-          <svg
-            class="w-3.5 h-3.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 18"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 1v16M1 9h16"
-            />
-          </svg>
-        </p>
+        <p-chart
+          *ngIf="gpaReport; else redirectionContent"
+          type="doughnut"
+          [data]="gpaData"
+          [options]="gpaOptions"
+        ></p-chart>
+
+        <ng-template #redirectionContent>
+          <div class="flex items-center justify-center h-96">
+            <a
+              routerLink="/dashboard/registered-courses"
+              class="flex items-center justify-center p-4 bg-gray-200 rounded-lg"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-12 h-12 text-gray-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                />
+              </svg>
+              <span class="ms-2 text-gray-500"
+                >Please
+                <span class="font-semibold text-gray-900">register</span>
+                your courses to interact with our features.
+              </span>
+            </a>
+          </div>
+        </ng-template>
       </div>
     </div>
   </div>

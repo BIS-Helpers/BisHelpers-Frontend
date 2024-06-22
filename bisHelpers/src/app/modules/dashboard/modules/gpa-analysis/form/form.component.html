@@ -65,7 +65,7 @@
       <p-skeleton width="10rem" height="2rem"></p-skeleton>
     </ng-template>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-4">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-2">
       <ng-container *ngIf="gpaReport; else loading_content">
         <app-report
           [gpaReport]="gpaReport"
@@ -120,8 +120,7 @@
                 Total Earned Hours:
               </p>
               <span class="text-paragraph-sm text-black"
-                >{{ gpaReport.totalEarnedHours }} /
-                {{ gpaReport.totalCurrentHours }} Hours</span
+                >{{ gpaReport.totalEarnedHours }} / 129 Hours</span
               >
             </div>
             <div class="flex gap-1.5 items-center">
@@ -156,6 +155,100 @@
       >
         <app-grades-degrees-points-table></app-grades-degrees-points-table>
       </p-dialog>
+    </div>
+    <ul
+      *ngIf="gpaReport"
+      class="py-2 leading-paragraph-lg font-medium list-disc list-outside px-8"
+    >
+      <li>
+        Your academic profile shows a current GPA of {{ GPA }}, with
+        {{ gpaReport.totalEarnedHours }} earned hours out of the total 129 hours
+        in your program.
+      </li>
+      <li>
+        You've accumulated
+        {{ gpaReport.totalEarnedPoints | number : '1.2-2' }}
+        earned points out of
+        {{ gpaReport.totalPoints | number : '1.2-2' }}
+        possible points thus far.
+      </li>
+      <li>
+        This semester, you're enrolled in
+        {{ AcademicLectures.length }}
+        courses, adding
+        {{ totalCurrentHours - gpaReport.totalEarnedHours }}
+        hours, bringing your total to
+        {{ totalCurrentHours }}
+        hours.
+      </li>
+      <li>
+        To maintain your current GPA, you need to achieve at least an
+        <span class="font-semibold">({{ minGradeToSaveGpa }})</span>
+        grade in these ongoing courses, which means you will earn
+        {{ gpaReport.pointsBasedOnMinGrade }}
+        points, resulting in a GPA of
+        {{ gpaReport.gpaBasedOnMinGrade }}.
+      </li>
+      <li>
+        It's important to consider the range of outcomes this semester: if you
+        receive all D's, your GPA would drop to {{ MinGpa }}, while achieving
+        all A+'s could raise it to {{ MaxGpa }}. Your current progress places
+        you at {{ (totalCurrentHours / 129) * 100 | number : '1.2-2' }}% of the
+        way towards completing your Business Information System bachelor's
+        degree.
+      </li>
+    </ul>
+    <ul
+      *ngIf="gpaReport"
+      class="py-2 leading-paragraph-lg font-arabic font-medium list-disc list-outside px-8"
+      dir="rtl"
+    >
+      <li>
+        يظهر ملفك الأكاديمي معدل تراكمي حالي قدره {{ GPA }}، مع
+        {{ gpaReport.totalEarnedHours }} ساعات مكتسبة من إجمالي 129 ساعة في
+        برنامجك.
+      </li>
+      <li>
+        لقد جمعت
+        {{ gpaReport.totalEarnedPoints | number : '1.2-2' }}
+        نقاط مكتسبة من
+        {{ gpaReport.totalPoints | number : '1.2-2' }}
+        نقاط ممكنة حتى الآن.
+      </li>
+      <li>
+        هذا الفصل الدراسي، أنت مسجل في
+        {{ AcademicLectures.length }}
+        مقررات، تضيف
+        {{ totalCurrentHours - gpaReport.totalEarnedHours }}
+        ساعات، ليصبح مجموع ساعاتك
+        {{ totalCurrentHours }}.
+      </li>
+      <li>
+        للحفاظ على معدلك التراكمي الحالي، تحتاج إلى الحصول على درجة لا تقل عن
+        <span class="font-semibold">({{ minGradeToSaveGpa }})</span>
+        في هذه المقررات الجارية، مما يعني أنك ستجمع
+        {{ gpaReport.pointsBasedOnMinGrade }}
+        نقاط، مما يؤدي إلى معدل تراكمي قدره
+        {{ gpaReport.gpaBasedOnMinGrade }}.
+      </li>
+      <li>
+        من المهم أن تأخذ في الاعتبار مجموعة النتائج الممكنة لهذا الفصل الدراسي:
+        إذا حصلت على جميع درجات D، سينخفض معدلك التراكمي إلى {{ MinGpa }}، بينما
+        إذا حصلت على جميع درجات A+، قد يرتفع إلى {{ MaxGpa }}. تقدمك الحالي يضعك
+        في %{{ (totalCurrentHours / 129) * 100 | number : '1.2-2' }} من الطريق
+        نحو إكمال درجة البكالوريوس في نظم المعلومات الإدارية.
+      </li>
+    </ul>
+
+    <div class="flex gap-10 py-4 max-md:flex-col">
+      <p class="text-paragraph-lg font-semibold text-green-500">
+        Maximum Possible GPA: {{ MaxGpa }} ({{ getGpaRating(MaxGpa) }})
+        {{ MaxGpa > 3.5 ? '🎉' : '' }}
+      </p>
+      <p class="text-paragraph-lg font-semibold text-red-500">
+        Minimum Possible GPA: {{ MinGpa }} ({{ getGpaRating(MinGpa) }})
+        {{ MinGpa < 2 ? '🤦‍♂️' : '' }}
+      </p>
     </div>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="mb-4" *ngIf="AcademicLectures; else loading_content">

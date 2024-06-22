@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './dashboard.component';
 import { CoreModule } from 'src/app/core/core.module';
-import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [LayoutComponent, DashboardComponent],
@@ -15,7 +14,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
     DashboardRoutingModule,
     RouterModule,
     CoreModule,
-    SharedModule,
   ],
 })
 export class DashboardModule {

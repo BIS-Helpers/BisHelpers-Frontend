@@ -17,6 +17,7 @@ const routes: Routes = [
           import('./modules/gpa-analysis/gpa-analysis.module').then(
             (m) => m.GpaAnalysisModule
           ),
+        canActivate: [RegisteredCoursesGuard],
       },
       {
         path: 'user-profile',
@@ -31,6 +32,7 @@ const routes: Routes = [
           import('./modules/bis-family-plus/bis-family-plus.module').then(
             (m) => m.BisFamilyPlusModule
           ),
+        canActivate: [RegisteredCoursesGuard],
       },
       {
         path: 'registered-courses',
@@ -38,6 +40,7 @@ const routes: Routes = [
           import('./modules/registered-courses/registered-courses.module').then(
             (m) => m.RegisteredCoursesModule
           ),
+        canActivate: [AcademicRegisterationGuard],
       },
       {
         path: '',

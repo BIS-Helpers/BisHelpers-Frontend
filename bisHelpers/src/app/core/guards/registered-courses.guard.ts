@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 })
 export class RegisteredCoursesGuard implements CanActivate {
   IsAllowed: boolean = false;
-  private localStorageIsAllowedSub: Subscription = new Subscription();
+  localStorageIsAllowedSub: Subscription = new Subscription();
 
   constructor(
     private localStorageService: LocalStorageService,
@@ -22,6 +22,12 @@ export class RegisteredCoursesGuard implements CanActivate {
       this.localStorageService.IsAllowed$.subscribe((isAllowed) => {
         this.IsAllowed = isAllowed;
       });
-    return !this.IsAllowed ? true : this.router.navigate(['/dashboard']);
+
+    if (this.IsAllowed) {
+      return true;
+    } else {
+      this.router.navigate(['/dashboard/registered-courses']);
+      return false;
+    }
   }
 }

@@ -193,12 +193,40 @@ export class CreateTableComponent implements OnInit {
     }
   }
 
+  getLectures(): any[] {
+    return this.rowsArray.controls
+      .map((row) => row.get('lecture')?.value)
+      .filter((lecture) => lecture !== null);
+  }
+
   onSubmit() {
+    const lectures = this.getLectures();
+
+    // Check for duplicate lecture start times on the same day and exact start time
+    const duplicateStartTimes = lectures.some((lecture, index) => {
+      const lectureDay = lecture.value.day;
+      const lectureStartTime = lecture.value.startTime;
+      return lectures.some((otherLecture, otherIndex) => {
+        return (
+          otherIndex !== index &&
+          otherLecture.value.day === lectureDay &&
+          otherLecture.value.startTime === lectureStartTime
+        );
+      });
+    });
+    console.log('Duplicate Start Times:', duplicateStartTimes);
+
     if (this.hasDuplicateCourses) {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
         detail: 'Please remove duplicate courses before submitting.',
+      });
+    } else if (duplicateStartTimes) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Duplicate lecture start times on the same day and time found!',
       });
     } else if (this.mainForm.invalid) {
       this.messageService.add({
@@ -207,11 +235,7 @@ export class CreateTableComponent implements OnInit {
         detail: 'Please fill all fields as required before submitting.',
       });
     } else {
-      const lectureIds: number[] = this.rowsArray.controls
-        .map((row) => row.get('lecture')?.value)
-        .filter((lecture) => lecture !== null)
-        .map((lecture) => lecture.value.id);
-
+      const lectureIds: number[] = lectures.map((lecture) => lecture.value.id);
       const gpa = this.mainForm.get('totalGPA')?.value;
       const totalEarnedHours = this.mainForm.get('completedHours')?.value;
 
@@ -220,6 +244,7 @@ export class CreateTableComponent implements OnInit {
         lecturesIds: lectureIds,
         totalEarnedHours: totalEarnedHours,
       };
+
       console.log('Submission Data:', request);
       this.store.dispatch(academicRegisterActions.register({ request }));
     }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { GpaService } from '../../services/gpa.service';
 import { GpaReport } from '../../interfaces/gpa-report';
 import { StudentRegisteredCourses } from 'src/app/core/interfaces/student';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Component({
   selector: 'app-form',
@@ -43,8 +44,15 @@ export class FormComponent implements OnInit {
   totalEarnedPoints = 0;
   totalCurrentHours = 0;
   form: FormGroup;
+  MaxGpa = 0;
+  MinGpa = 0;
+  semesterGpa = 0;
 
-  constructor(private gpaService: GpaService, private fb: FormBuilder) {
+  constructor(
+    private gpaService: GpaService,
+    private fb: FormBuilder,
+    private localStorageService: LocalStorageService
+  ) {
     this.form = this.fb.group({
       lectures: this.fb.array([]),
     });
@@ -52,6 +60,9 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
     this.gpaReport$.subscribe((data) => {
+      this.semesterGpa = this.localStorageService.getItem(
+        'academicYearAndSemester'
+      );
       this.gpaReport = data;
       this.minGradeToSaveGpa = this.gpaReport.minGradeToSaveGpa;
       this.GPA = this.gpaReport.gpa;
@@ -61,6 +72,17 @@ export class FormComponent implements OnInit {
       this.totalEarnedPoints = this.gpaReport.totalEarnedPoints;
       this.totalCurrentHours = this.gpaReport.totalCurrentHours;
       this.initializeForm();
+      let minPoints = this.totalEarnedPoints;
+      this.AcademicLectures.forEach((lecture) => {
+        minPoints += lecture.academicCourse.creditHours * 2;
+      });
+      this.MinGpa = +(minPoints / this.totalCurrentHours).toFixed(2);
+      //loop on academic lectures to get credit hours * 4
+      let maxPoints = this.totalEarnedPoints;
+      this.AcademicLectures.forEach((lecture) => {
+        maxPoints += lecture.academicCourse.creditHours * 4;
+      });
+      this.MaxGpa = +(maxPoints / this.totalCurrentHours).toFixed(2);
     });
   }
 
@@ -103,7 +125,7 @@ export class FormComponent implements OnInit {
     const rowDataWithPoints = this.lecturesArray.controls.map((control) => {
       const grade = control.get('selectedGrade')?.value;
       const creditHours = control.get('creditHours')?.value;
-      const points = grade ? grade.points : 0; // Default to 0 if grade is not selected
+      const points = grade ? grade.points : 0;
       console.log('Points:', points);
 
       return {
@@ -128,6 +150,15 @@ export class FormComponent implements OnInit {
     const stimulatedGPA = stimulatedPoints / this.totalCurrentHours;
     this.GPAStimulation = +stimulatedGPA;
     console.log('Stimulated GPA:', stimulatedGPA);
+  }
+
+  getGpaRating(gpa: number): string {
+    for (const category of this.categories) {
+      if (gpa >= category.minPoints && gpa <= category.maxPoints) {
+        return category.rating;
+      }
+    }
+    return 'Unknown';
   }
 
   showDialog() {
