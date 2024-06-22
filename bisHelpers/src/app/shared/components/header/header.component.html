@@ -86,11 +86,17 @@
         </li>
       </ul>
       <div class="flex items-center gap-4">
-        <a routerLink="/auth/login">
+        <a *ngIf="!IsAllowed" routerLink="/auth/login">
           <button type="button" class="btn-secondary">Login</button>
         </a>
-        <a routerLink="/auth/signup">
+        <a *ngIf="!IsAllowed" routerLink="/auth/signup">
           <button type="button" class="btn-primary">Sign up</button>
+        </a>
+        <a class="" *ngIf="IsAllowed" routerLink="/dashboard">
+          <button type="button" class="btn-primary flex items-center">
+            Go to your Dashboard
+            <i class="pi pi-angle-right" style="font-size: 1.5rem"></i>
+          </button>
         </a>
       </div>
     </div>

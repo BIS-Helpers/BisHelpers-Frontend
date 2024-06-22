@@ -262,17 +262,17 @@
             </div>
           </div>
         </div>
-        <!-- <ng-container *ngIf="data.backendErrors">
+        <ng-container *ngIf="data.backendErrors">
           <ng-container *ngFor="let error of data.backendErrors">
             <ng-container *ngIf="error.message">
-              <small class="text-red-600 pl-2">
+              <small class="text-red-600 pl-2 col-span-4">
                 <ul *ngFor="let detail of error.details">
                   <li>{{ detail }}</li>
                 </ul>
               </small>
             </ng-container>
           </ng-container>
-        </ng-container> -->
+        </ng-container>
         <button
           [disabled]="data.isSubmitting || signupForm.invalid"
           class="py-4 lg:py-5 flex items-center justify-center rounded-lg focus:outline-none mt-5 lg:mt-1 col-span-4

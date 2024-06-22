@@ -22,6 +22,9 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        arabic: ['Almarai', 'sans-serif'],
+      },
       fontSize: {
         'heading-xxlg': '40px',
         'heading-xlg': '36px',

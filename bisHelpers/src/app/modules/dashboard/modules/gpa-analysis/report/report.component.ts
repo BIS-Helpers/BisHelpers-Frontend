@@ -27,7 +27,7 @@ export class ReportComponent implements OnInit, OnChanges {
   options: any;
 
   constructor(private localStorageService: LocalStorageService) {
-    Chart.register(ChartDataLabels  );
+    Chart.register(ChartDataLabels);
   }
 
   ngOnInit() {
